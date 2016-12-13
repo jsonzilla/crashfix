@@ -11,6 +11,7 @@
 CUploaderConsole::CUploaderConsole()
 {
 	m_bVerbose = false;
+	m_nLastStatusChangedFile = 0;
 }
 
 std::string CUploaderConsole::GetErrorMsg()

@@ -5,6 +5,7 @@ CThread::CThread()
 {
     m_bValid = false;
     m_pParam = NULL;
+    m_hThread = NULL;
     m_lRetCode = 0;
 #ifdef _WIN32
     m_hThread = NULL;

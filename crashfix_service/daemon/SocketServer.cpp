@@ -26,6 +26,7 @@ CSocketServer::CSocketServer()
     m_pPollingThread = NULL;
 	// Init command ID seed number
 	m_nAssyncCommandIdSeed = 0;
+	m_nMaxMemUsageMB = 100;
 
 #ifdef _WIN32
     // In Windows, we have to initialize Winsock library.

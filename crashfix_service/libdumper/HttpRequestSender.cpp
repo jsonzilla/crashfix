@@ -24,6 +24,9 @@ CHttpRequestSender::CHttpRequestSender()
     m_sTextPartFooterFmt = _T("\r\n");   
     m_sFilePartHeaderFmt = _T("--%s\r\nContent-disposition: form-data; name=\"%s\"; filename=\"%s\"\r\nContent-Type: %s\r\nContent-Transfer-Encoding: binary\r\n\r\n");
     m_sFilePartFooterFmt = _T("\r\n");  
+    m_dwUploaded = 0;
+    m_dwPostSize = 0;
+    m_Assync = NULL;
 }
 
 // Sends HTTP request assyncronously (in a working thread)

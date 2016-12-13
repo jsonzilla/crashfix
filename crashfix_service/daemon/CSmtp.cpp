@@ -33,7 +33,7 @@ CSmtp::CSmtp()
 {
 	m_iXPriority = XPRIORITY_NORMAL;
 	m_iSMTPSrvPort = 0;
-
+	hSocket = 0;
 #ifndef LINUX
 	// Initialize WinSock
 	WSADATA wsaData;

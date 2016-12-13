@@ -19,6 +19,8 @@ CMtClient::CMtClient(std::string sHost, int nPort)
     m_dTotalTestTime = 0;
     m_uTotalRequestsProcessed = 0;
     m_nLoggingLevel = 0;
+    m_nThreadCount = 10;
+    m_nDuration = 0;
 
 #ifdef _WIN32
     // Initialize Winsock

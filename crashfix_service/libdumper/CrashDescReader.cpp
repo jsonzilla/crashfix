@@ -26,6 +26,8 @@ CCrashDescReader::CCrashDescReader()
     m_dwFPESubcode = 0;
     m_dwExceptionCode = 0;
     m_dwInvParamLine = 0;
+    m_dwGeneratorVersion = 0;
+    m_bOSIs64Bit = false;
 }
 
 CCrashDescReader::~CCrashDescReader()

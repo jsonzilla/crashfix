@@ -21,6 +21,7 @@ CPdbSymbol::CPdbSymbol(CPdbSymbolStream* pStream)
     m_lOffset = 0;
     m_dwLength = 0;
     m_dwTypeIndex = 0;
+    m_dwRVA = 0;
 }
 
 
@@ -34,6 +35,7 @@ CPdbSymbol::CPdbSymbol(CPdbSymbolStream* pStream, _SYM_ENUM_e Type)
     m_lOffset = 0;
     m_dwLength = 0;
     m_dwTypeIndex = 0;
+    m_dwRVA = 0;
 }
 
 CPdbSymbol::~CPdbSymbol()

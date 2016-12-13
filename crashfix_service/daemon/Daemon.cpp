@@ -39,6 +39,11 @@ CDaemon::CDaemon()
 	m_nCacheMaxEntries = 0;
 	m_nCacheMaxMemUsageMB = 0;
 	m_MonitorOption = MO_UNDEFINED;
+	m_bNotifyWebmasterOnErrors = false;
+	m_bLaunchMonitorProcess = false;
+	m_bRestartDaemonOnCrash = true;
+	m_sSmtpServerHost = "";
+	m_nSmtpServerPort = 25;
 #ifdef _WIN32
 	m_nPidToMonitor = _getpid();
 #else
