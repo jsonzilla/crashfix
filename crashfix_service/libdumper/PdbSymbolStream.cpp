@@ -41,14 +41,12 @@ BOOL CPdbSymbolStream::Init(
 	CPdbReader* pPdbReader, 
 	CMsfStream* pStream, 
 	DWORD dwOffsetInStream, 
-	UINT uSize, 
+	UINT /* uSize */,
 	LPDWORD pdwNewOffsInStream,
 	DWORD dwFlags)
 {
     BOOL bResult = FALSE;
     DWORD64 dwRVA = 0;
-
-    uSize; // unused parameter
 
     // Init output
     if(pdwNewOffsInStream)

@@ -279,7 +279,7 @@ BOOL CMiniDumpWriterImpl::BrowseResourceDirForVersionInfo(
 
         if(nLevel<2)
         {
-            if(nLevel==1 || MAKEINTRESOURCE(DirEntry.Id)==RT_VERSION && DirEntry.DataIsDirectory==1)
+            if(nLevel==1 || (MAKEINTRESOURCE(DirEntry.Id)==RT_VERSION && DirEntry.DataIsDirectory==1))
             {
                 BrowseResourceDirForVersionInfo(nLevel+1, uResourceDataSectionOffs, uResourceDirTableOffs,
                     uResourceDirTableOffs+DirEntry.OffsetToDirectory, sizeof(IMAGE_RESOURCE_DIRECTORY), ppFixedFileInfo);

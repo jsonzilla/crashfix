@@ -47,7 +47,7 @@ public:
     CMtClient(std::string sHost, int nPort);
 
     //! Destructor.
-    ~CMtClient();
+    virtual ~CMtClient();
 
     //! Runs the multi-threaded client.
     //! @param[in] nThreadCount Count of threads.

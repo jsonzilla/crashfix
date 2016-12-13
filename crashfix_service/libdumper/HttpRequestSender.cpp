@@ -636,10 +636,6 @@ void CHttpRequestSender::UploadProgress(DWORD dwBytesWritten)
 void CHttpRequestSender::ParseURL(LPCTSTR szURL, LPTSTR szProtocol, UINT cbProtocol, 
                                   LPTSTR szAddress, UINT cbAddress, DWORD &dwPort, LPTSTR szURI, UINT cbURI)
 {  
-    cbURI;
-    cbAddress;
-    cbProtocol;
-
     DWORD dwPosition=0;
     BOOL bFlag=FALSE;
 

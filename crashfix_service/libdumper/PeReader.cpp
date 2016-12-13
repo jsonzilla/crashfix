@@ -20,6 +20,9 @@ CPeReader::CPeReader()
     m_pMiscRecord = NULL;
     m_dwMiscRecSize = 0;
     m_pVersionInfo = NULL;
+    m_dwCheckSum = 0;
+    m_DateTimeStamp = 0;
+    m_nCvAge = 0;
 }
 
 CPeReader::~CPeReader()
@@ -350,7 +353,7 @@ BOOL CPeReader::BrowseResourceDirForVersionInfo(
 
         if(nLevel<2)
         {
-            if(nLevel==1 || MAKEINTRESOURCE(DirEntry.Id)==RT_VERSION && DirEntry.DataIsDirectory==1)
+            if(nLevel==1 || (MAKEINTRESOURCE(DirEntry.Id)==RT_VERSION && DirEntry.DataIsDirectory==1))
             {
                 BrowseResourceDirForVersionInfo(pSection, nLevel+1, uResourceDataSectionOffs, uResourceDirTableOffs,
                     uResourceDirTableOffs+DirEntry.OffsetToDirectory, sizeof(IMAGE_RESOURCE_DIRECTORY), ppFixedFileInfo);

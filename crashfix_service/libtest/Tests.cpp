@@ -167,6 +167,8 @@ CTestCase* g_pCurTestCase = NULL;
 CTestCase::CTestCase(CTestCase* pParentCase)
 {
     m_pParentCase = pParentCase;
+    m_bSetUpFailed = false;
+    m_bTestFailed = false;
 }
 
 CTestCase::~CTestCase()

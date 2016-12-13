@@ -390,20 +390,20 @@ int CCommandProcessor::ReadDump(LPCSTR szFileName, LPCSTR szOutFile)
 		if(uRva<pBlock->m_uRVA)
 		{
 
-			fprintf(f, "BlockType = UnusedSpace RVA = %u Size = %u\n",
+			fprintf(f, "BlockType = UnusedSpace RVA = %lu Size = %lu\n",
 				uRva,
 				pBlock->m_uRVA);
 		}
 		else if(uRva>pBlock->m_uRVA)
 		{
-			fprintf(f, "BlockType = Overlapping RVA = %u Size = %u\n",
+			fprintf(f, "BlockType = Overlapping RVA = %lu Size = %lu\n",
 				uRva,
 				uRva-pBlock->m_uRVA);
 		}
 
 		uRva = pBlock->m_uRVA+pBlock->m_uSize;
 
-		fprintf(f, "BlockType = %s RVA = %u Size = %u\n",
+		fprintf(f, "BlockType = %s RVA = %lu Size = %lu\n",
 			strconv::w2a(pBlock->m_sId).c_str(),
 			pBlock->m_uRVA,
 			pBlock->m_uSize);
@@ -479,7 +479,7 @@ int CCommandProcessor::ReadDump(LPCSTR szFileName, LPCSTR szOutFile)
 	{
 		MiniDumpMemRange* pmr = dmp.GetMemRangeInfo(i);
 
-		fprintf(f, "%d. Start = %"PRIu64" Size=%u\n",
+		fprintf(f, "%d. Start = %"PRIu64" Size=%lu\n",
 			i+1, pmr->m_uStart, pmr->m_uSize);
 	}
 

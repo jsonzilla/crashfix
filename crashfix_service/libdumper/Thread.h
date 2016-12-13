@@ -11,7 +11,7 @@ public:
     CThread();
 
     //! Destructor.
-    ~CThread();
+    virtual ~CThread();
 
     //! Creates the thread and executes the thread procedure.
     //! \return true on success.
