@@ -1008,12 +1008,13 @@ int CCommandProcessor::DumpCrashReport(LPCWSTR szCrashRptFileName, LPCWSTR szOut
 		pSysInfo = pMiniDump->GetSystemInfo();
 	}
 
+    /* Enabled 64-bit support (SIC) for collect by Jeroen Walter
 	if(pSysInfo && pSysInfo->m_uProcessorArchitecture != PROCESSOR_ARCHITECTURE_INTEL)
 	{
 		m_pLog->write(0, "Not supported CPU architecture of crash report file!\n");
         m_sErrorMsg = "Unsupported CPU architecture";
 		goto cleanup;
-	}
+	}*/
 
 #ifdef _WIN32
 	fopen_s(&f, strconv::w2a(szOutFile).c_str(), "wt");
