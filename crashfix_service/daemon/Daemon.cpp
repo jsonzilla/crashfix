@@ -265,13 +265,12 @@ void CDaemon::LaunchMonitorProcess()
 	int nResult = execute(str.c_str(), false);
 	if(nResult!=0)
 	{
-		std::ostringstream str;
-		str << "Error launching monitoring process (error code = ";
-		str << nResult;
-		str << ")";
-		Die(str.str().c_str(), true);
+		std::ostringstream strError;
+		strError << "Error launching monitoring process (error code = ";
+		strError << nResult;
+		strError << ")";
+		Die(strError.str().c_str(), true);
 	}
-
 
 #else
     // Spawn the child monitor process
@@ -794,10 +793,8 @@ int CDaemon::Restart()
 int CDaemon::Stop()
 {
     int nStatus = 1;
-	int nPid = -1;
+	
 	int i = 0;
-	bool bExists = false;
-	bool bTerminated = false;
 
 #ifdef _WIN32
 
@@ -807,6 +804,10 @@ int CDaemon::Stop()
 	return StartNTService(FALSE);
 
 #else
+	int nPid = -1;
+
+	bool bTerminated = false;
+
     // Read config
     ReadConfig();
 
@@ -1565,7 +1566,6 @@ int CDaemon::RemoveNTService()
 	// Remove service
 	if(!DeleteService(hService))
 	{
-		DWORD dwError = GetLastError();
 		wprintf(L"Error deleting service: %s\n", GetErrorMsg().c_str());
 	}
 
@@ -1604,7 +1604,6 @@ int CDaemon::StartNTService(BOOL bStart)
 	if(bStart)
 	{
 		// Start the service
-		LPCWSTR aszArgs[1] = {L"--run-as-service"};
 		if(!::StartService(hService, 0, NULL))
 		{
 			CloseServiceHandle(hSCManager);
@@ -1619,9 +1618,7 @@ int CDaemon::StartNTService(BOOL bStart)
 
 		// Check if service is running
 		const int ATTEMPT_COUNT = 10;
-		int i;
-		for(i=0; i<ATTEMPT_COUNT; i++)
-		{
+		for(int i= 0 ; i < ATTEMPT_COUNT; ++i) {
 			Sleep(1000);
 			printf(".");
 
@@ -1690,11 +1687,8 @@ void CDaemon::EnterServiceMain()
     StartServiceCtrlDispatcher(serviceTable);
 }
 
-void WINAPI CDaemon::ServiceMain(DWORD dwArgc, PWSTR *pszArgv)
+void WINAPI CDaemon::ServiceMain(DWORD /* dwArgc */, PWSTR* /*pszArgv*/)
 {
-	int error = -1;
-	int i = 0;
-
 	m_ServiceStatus.dwServiceType    = SERVICE_WIN32_OWN_PROCESS;
 	m_ServiceStatus.dwCurrentState    = SERVICE_START_PENDING;
 	m_ServiceStatus.dwControlsAccepted  = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN;
@@ -1731,7 +1725,7 @@ void WINAPI CDaemon::ServiceMain(DWORD dwArgc, PWSTR *pszArgv)
 
 	// Launch another process
 	int nPid = 0;
-	if(0==pDaemon->LaunchDaemonProcess(nPid))
+	if(0 == pDaemon->LaunchDaemonProcess(nPid))
 	{
 		// Enter the monitoring loop
 		pDaemon->SetMonitorOption(MO_IS_MONITOR, nPid);
