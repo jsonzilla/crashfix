@@ -13,7 +13,7 @@ matrix:
             - gcc-4.8
         coverity_scan:
           project:
-            name: "benvenutti/hasm"
+            name: "0unit/crashfix"
             description: "Build submitted via Travis CI"
           notification_email: cardoso.jeison@gmail.com
           build_command_prepend: "cd crashfix_service && cmake -DCMAKE_BUILD_TYPE=Release"
