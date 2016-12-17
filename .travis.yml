@@ -71,5 +71,7 @@ matrix:
 sudo: required
 dist: trusty
 
+script: cd crashfix_service && cmake -DCMAKE_BUILD_TYPE=Release && make
+
 notifications:
   email: true
