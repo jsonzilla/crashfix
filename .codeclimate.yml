@@ -24,4 +24,5 @@ exclude_paths:
    - "site/"
    - "doc/"
    - "crashfix_service/"
+   - "crashfix_webapp/protected/framework/"
    - "**.bat" 
