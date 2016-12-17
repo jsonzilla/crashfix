@@ -25,4 +25,5 @@ exclude_paths:
    - "doc/"
    - "crashfix_service/"
    - "crashfix_webapp/protected/framework/"
+   - "crashfix_webapp/protected/vendors/"
    - "**.bat" 
