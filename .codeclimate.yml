@@ -1,0 +1,25 @@
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - javascript
+        - php
+  csslint:
+    enabled: true
+  eslint:
+    enabled: true
+  phpmd:
+    enabled: true
+ratings:
+   paths:
+   - "**.js"	
+   - "**.css"
+   - "**.php"	
+   - "**.ini"   
+
+exclude_paths:
+    "site/"
+    "doc/"
+    "crashfix_service/"
+    "**.bat"
