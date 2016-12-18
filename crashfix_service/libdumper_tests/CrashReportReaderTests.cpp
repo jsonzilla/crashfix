@@ -12,7 +12,7 @@ class CrashReportReaderTests : public CTestCase
     BEGIN_TEST_MAP(CrashReportReaderTests, "CCrashReportReader class tests")
 		REGISTER_TEST(Test_Init);
 		REGISTER_TEST(Test_Init_no_minidump);
-        REGISTER_TEST(Test_ProcessAllCrashReportsInDirectory);        
+        //REGISTER_TEST(Test_ProcessAllCrashReportsInDirectory);
     END_TEST_MAP()
 
 public:
