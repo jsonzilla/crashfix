@@ -17,7 +17,7 @@ CConfig::CConfig()
 
 CConfig::CConfig(const char* szFileName, bool* pbInit)
 {
-	if(pbInit!=NULL)
+	if(pbInit!=nullptr)
 		*pbInit = false;
 
 	bool bInit = Init(szFileName);
@@ -34,12 +34,12 @@ bool CConfig::Init(const char* szFileName)
 {
 	m_sFileName.clear();
 
-	if(szFileName==NULL)
+	if(szFileName==nullptr)
 		return false;
 
 	// Open file
 	FILE* f = fopen(szFileName, "rt");
-	if(f==NULL)
+	if(f==nullptr)
 		return false; // Error opening file
 
 	// Close file
@@ -54,7 +54,7 @@ bool CConfig::Init(const char* szFileName)
 const char* CConfig::GetFileName()
 {
 	if(m_sFileName.empty())
-		return NULL;
+		return nullptr;
 
 	return m_sFileName.c_str();
 }
@@ -62,28 +62,28 @@ const char* CConfig::GetFileName()
 
 char* CConfig::getProfileString(const char* param_name, char* buf, int buf_len)
 {
-	char* szRet = NULL;
+	char* szRet = nullptr;
 	char szLine[4096]="";
-	char* s = NULL;
-	char* c = NULL;
+	char* s = nullptr;
+	char* c = nullptr;
 	char szName[4096]="";
 	char szVal[4096]="";
 	bool bFound = false;
 	unsigned int i = 0;
 	bool bComment = false;
 	unsigned int len = 0;
-	FILE* f = NULL;
+	FILE* f = nullptr;
 
 	// Validate input parameters
 	if(m_sFileName.empty() ||
 		param_name==0 ||
-		buf==NULL ||
+		buf==nullptr ||
 		buf_len==0)
 		goto cleanup; // Invalid arg
 
 	// Open file
 	f = fopen(m_sFileName.c_str(), "rt");
-	if(f==NULL)
+	if(f==nullptr)
 		goto cleanup; // Error opening file
 
 	// Read file
@@ -91,7 +91,7 @@ char* CConfig::getProfileString(const char* param_name, char* buf, int buf_len)
 	{
 		// Read a line from file
 		s = fgets(szLine, 4095, f);
-		if(s==NULL)
+		if(s==nullptr)
 			break; // nothing to read?
 
 		// Check if it is comment (begins with '#' or ';' symbol)
@@ -123,14 +123,14 @@ char* CConfig::getProfileString(const char* param_name, char* buf, int buf_len)
 		// Look for '#' or ";" symbol inside the line
 		// (inline comments)
 		c = strchr(s, '#');
-		if(c!=NULL)
+		if(c!=nullptr)
 		{
 			// remove comment part
 			*c=0;
 		}
 
 		c = strchr(s, ';');
-		if(c!=NULL)
+		if(c!=nullptr)
 		{
 			// remove comment part
 			*c=0;
@@ -139,7 +139,7 @@ char* CConfig::getProfileString(const char* param_name, char* buf, int buf_len)
 		// Now we need to separate parameter name from its value.
 		// Look for the first '=' symbol.
 		c = strchr(s, '=');
-		if(c==NULL)
+		if(c==nullptr)
 			continue; // not valid line format?
 
 		// get parameter name
@@ -194,7 +194,7 @@ int CConfig::getProfileInt(const char* param_name, int default_val)
 	//const char* profile_name = m_sFileName.c_str();
 
 	char* s = getProfileString(param_name, buf, BUF_SIZE);
-	if(s==NULL) return default_val;
+	if(s==nullptr) return default_val;
 
 	return atoi(s);
 }
@@ -202,9 +202,9 @@ int CConfig::getProfileInt(const char* param_name, int default_val)
 int CConfig::writeProfileString(const char* param_name, const char* value)
 {
 	int nResult = -1;
-	FILE* f = NULL;
-	char* szTmpName = NULL;
-	FILE* tmpf = NULL;
+	FILE* f = nullptr;
+	char* szTmpName = nullptr;
+	FILE* tmpf = nullptr;
 	char str[1024] = "";
 	char name[512] = "";
 	char val[512] = "";
@@ -213,25 +213,26 @@ int CConfig::writeProfileString(const char* param_name, const char* value)
 	const char* profile_name = m_sFileName.c_str();
 
 	// Validate input parameters
-	if(profile_name==0 || param_name==0 || val==NULL)
+	if(profile_name==0 || param_name==0 || val==nullptr)
 		goto cleanup;
 
 	// Open source file
 	f = fopen(profile_name, "rt");
-	if(f==NULL)
+	if(f==nullptr) {
 		goto cleanup;
-
+	}
 	// Open temp file
-	szTmpName = tmpnam(NULL);
+	szTmpName = tmpnam(nullptr);
+
 	tmpf = fopen(szTmpName, "wt");
-	if(tmpf==NULL)
+	if(tmpf==nullptr)
 		goto cleanup;
 
 	while(!feof(f))
 	{
 		// Read a line from file
 		char* s = fgets(str, 1024, f);
-		if(s==NULL)
+		if(s==nullptr)
 			break; // nothing to read?
 
 		// check if it is a comment (begins with '#' or ';' symbol)
@@ -255,7 +256,7 @@ int CConfig::writeProfileString(const char* param_name, const char* value)
 
 		// look for the first '=' symbol
 		char* c = strchr(s, '=');
-		if(c==NULL)
+		if(c==nullptr)
 		{
 			// not valid line format?
 			fprintf(tmpf, "%s", str); // Put line to temp file without changes
@@ -286,24 +287,24 @@ int CConfig::writeProfileString(const char* param_name, const char* value)
 	}
 
 	fclose(f);
-	f = NULL;
+	f = nullptr;
 	fclose(tmpf);
-	tmpf = NULL;
+	tmpf = nullptr;
 
 	// Copy temp file content to original file
 	f = fopen(profile_name, "wt");
-	if(f==NULL)
+	if(f==nullptr)
 		goto cleanup;
 
 	tmpf = fopen(szTmpName, "rt");
-	if(tmpf==NULL)
+	if(tmpf==nullptr)
 		goto cleanup;
 
 	while(!feof(tmpf))
 	{
 		// Read a line from file
 		char* s = fgets(str, 1024, tmpf);
-		if(s!=NULL)
+		if(s!=nullptr)
 			fputs(str, f);
 	}
 
@@ -330,7 +331,7 @@ cleanup:
 void CConfig::trim(char* s)
 {
 	// Validate arg
-	if(s==NULL)
+	if(s==nullptr)
 		return;
 
 	// Trim left spaces

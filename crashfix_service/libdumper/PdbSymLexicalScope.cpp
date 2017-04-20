@@ -20,53 +20,50 @@ CPdbSymLexicalScope::CPdbSymLexicalScope(DWORD dwScopeId, CPdbSymLexicalScope* p
 CPdbSymLexicalScope::~CPdbSymLexicalScope()
 {
     // Remove child scopes
-    std::map<DWORD, CPdbSymLexicalScope*>::iterator it;
-    for(it=m_apChildScopes.begin(); it!=m_apChildScopes.end(); it++)
-    {
-        CPdbSymLexicalScope* pChild = it->second;
-        delete pChild;
-    }
+	for (auto&& it : m_apChildScopes){
+        delete it.second;
+	}
 }
 
-DWORD CPdbSymLexicalScope::GetLexicalScopeId()
+DWORD CPdbSymLexicalScope::GetLexicalScopeId() const
 {
     return m_dwScopeId;
 }
 
-CPdbSymLexicalScope* CPdbSymLexicalScope::GetParentLexicalScope()
+CPdbSymLexicalScope*CPdbSymLexicalScope::GetParentLexicalScope() const
 {
     return m_pParentScope;
 }
 
-UINT CPdbSymLexicalScope::GetChildScopeCount()
+UINT CPdbSymLexicalScope::GetChildScopeCount() const
 {
     // Get children count
     return (UINT)m_apChildScopes.size();
 }
 
-CPdbSymLexicalScope* CPdbSymLexicalScope::GetChildScope(int nIndex)
+CPdbSymLexicalScope*CPdbSymLexicalScope::GetChildScope(int nIndex)
 {
     if(nIndex<0 || nIndex>=(int)m_apChildScopes.size())
-        return NULL; // Invalid parameter
+        return nullptr; // Invalid parameter
 
-    // Get lexical scope by its index  
+    // Get lexical scope by its index
     return m_apChildScopes[nIndex];
 }
 
-void CPdbSymLexicalScope::AddChildScope(CPdbSymLexicalScope* pChild)
+void CPdbSymLexicalScope::AddChildScope(CPdbSymLexicalScope* const pChild)
 {
     m_apChildScopes[pChild->GetLexicalScopeId()] = pChild;
 }
 
-UINT CPdbSymLexicalScope::GetSymbolCount()
+UINT CPdbSymLexicalScope::GetSymbolCount() const
 {
     return (UINT)m_apSymbols.size();
 }
 
-CPdbSymbol* CPdbSymLexicalScope::GetSymbol(int nIndex)
+CPdbSymbol*CPdbSymLexicalScope::GetSymbol(int nIndex)
 {
     if(nIndex<0 || nIndex>=(int)m_apSymbols.size())
-        return NULL; // Invalid index
+        return nullptr; // Invalid index
 
     return m_apSymbols[nIndex];
 }

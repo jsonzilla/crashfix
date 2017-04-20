@@ -43,14 +43,14 @@ long CServerThread::ThreadProc(void* pParam)
 
         m_pLog->write(2, "Thread %d: Waked up.\n", m_nThreadId);
 
-        int nRequestsProcessed = 0;
+		int nRequestsProcessed { 0 };
 
         // In loop, get all pending requests from queue and process each one
         while(1)
         {
             // Check if there are pending requests.
             SOCK sock = 0;
-            double IncomingTime = 0;
+			double IncomingTime { 0.0 };
 			std::string sCmdId;
 			std::string sCommand;
             if(m_pServer->GetRequest(sock, IncomingTime, sCmdId, sCommand))
@@ -98,25 +98,25 @@ long CServerThread::ThreadProc(void* pParam)
         }
     }
 
-    return 0;
+    return (0);
 }
 
 time_t CServerThread::GetStartTime()
 {
     CAutoLock lock(&m_CritSec);
-    return m_StartTime;
+    return (m_StartTime);
 }
 
 bool CServerThread::IsBusy()
 {
     CAutoLock lock(&m_CritSec);
-    return m_bBusy;
+    return (m_bBusy);
 }
 
 SOCK CServerThread::GetSocket()
 {
     CAutoLock lock(&m_CritSec);
-	return m_Sock;
+	return (m_Sock);
 }
 
 void CServerThread::SetSocket(SOCK sock)
@@ -133,12 +133,12 @@ void CServerThread::HandleSocketRequest()
     // Set up the input buffer.
     std::string sInputBuffer;
     std::vector<std::string> asCommandSeq;
-    int nParseResult = -1;
-    int nProcessResult = -1;
+	int nParseResult { -1 };
+	int nProcessResult { -1 };
     std::string sRecvError;
     std::string sResponse;
-	const int TIMEOUT = 5;
-    const int MAX_IN_BUFF_SIZE = 10240;
+	const int TIMEOUT { 5 };
+	const int MAX_IN_BUFF_SIZE { 10240 };
     std::string sErrorMsg;
 
 	// Check if socket number is valid
@@ -216,7 +216,7 @@ int CServerThread::ParseInputBuffer(std::string& sInput, std::vector<std::string
     // Init output
     asCmdSeq.clear();
 
-    char* pPtr = NULL;
+    char* pPtr = nullptr;
     const char* szInput = sInput.c_str();
     size_t nBufSize = sInput.size();
 
@@ -224,7 +224,7 @@ int CServerThread::ParseInputBuffer(std::string& sInput, std::vector<std::string
 
     // Get first command
     char* pCmd = strtok_r((char*)szInput, ";\n", &pPtr);
-    while( pCmd != NULL )
+    while( pCmd != nullptr )
     {
         if(strlen(pCmd)==0)
         {
@@ -238,19 +238,19 @@ int CServerThread::ParseInputBuffer(std::string& sInput, std::vector<std::string
         m_pLog->write(2, "Thread %d: encountered command: %s\n", m_nThreadId, pCmd);
 
         // Get the next command
-        pCmd = strtok_r(NULL, ";\n", &pPtr);
+        pCmd = strtok_r(nullptr, ";\n", &pPtr);
     }
 
     // Done
     m_pLog->write(2, "Thread %d: command sequence parsed ok.\n", m_nThreadId);
-    return 0;
+    return (0);
 }
 
 int CServerThread::ProcessCommandSequence(std::vector<std::string>& cmd_seq, std::string& err_msg)
 {
     char err_code[64] = "";
     char sz_cmd_num[10] = "";
-    int result = -1;
+	int result { -1 };
     std::string cmd_err_msg;
 
     unsigned i;
@@ -270,24 +270,23 @@ int CServerThread::ProcessCommandSequence(std::vector<std::string>& cmd_seq, std
     err_msg += cmd_err_msg;
     err_msg += "\n"; // end of message marker
 
-    return result;
+    return (result);
 }
 
 int CServerThread::ProcessCommand(const char* szCmdLine, std::string& sErrorMsg)
 {
-    char *pArg = NULL, *pPtr = NULL;
-    char *argv[WR_MAX_ARG + 1] = {NULL};
-    int	 argc = 0;
+    char *pArg = nullptr, *pPtr = nullptr;
+    char *argv[WR_MAX_ARG + 1] = {nullptr};
+	int argc { 0 };
 	std::string sCmdLine = szCmdLine;
 
     argc = 0;
-    if( szCmdLine != NULL && *szCmdLine != '\0' )
+    if( szCmdLine != nullptr && *szCmdLine != '\0' )
     {
 		size_t nLen = strlen(szCmdLine);
 		pArg = pPtr = (char*)szCmdLine;
-		bool bDoubleQuotes = false;
-		size_t i;
-		for(i=0; i<nLen; i++)
+		bool bDoubleQuotes { false };
+		for(size_t i=0; i<nLen; i++)
 		{
 			if(*pPtr=='\"')
 			{
@@ -341,20 +340,19 @@ int CServerThread::ProcessCommand(const char* szCmdLine, std::string& sErrorMsg)
             {
                 m_pLog->write(2, "process_command: Count of command arguments has exeeded the limit.\n");
                 sErrorMsg = "Count of command arguments has exeeded the limit.";
-                return -1;
+                return (-1);
             }
         }
     }
 
-    argv[argc] = NULL;
+    argv[argc] = nullptr;
 
-    int i;
-    for(i=0; i<argc; i++)
+    for(int i=0; i<argc; i++)
     {
         m_pLog->write(2, "%s\n", argv[i]);
     }
 
-    int nErrorCode = 101;
+	int nErrorCode { 101 };
     sErrorMsg = "Unknown command.\n";
 
 	if(argc>0 && strcmp(argv[0], "assync")==0)
@@ -414,13 +412,13 @@ int CServerThread::ProcessCommand(const char* szCmdLine, std::string& sErrorMsg)
             sErrorMsg = "Unexpected command encountered.";
     }
 
-    return nErrorCode;
+    return (nErrorCode);
 }
 
 int CServerThread::ProcessServerCommand(int argc, char* argv[], std::string& sErrMsg)
 {
-	int cur_arg = 0;
-    int nStatus = R_INVALID_PARAM;
+	int cur_arg { 0 };
+    int nStatus { R_INVALID_PARAM };
     sErrMsg = ("Unspecified error.");
 
     if(!cmp_arg("daemon"))
@@ -449,7 +447,7 @@ int CServerThread::ProcessServerCommand(int argc, char* argv[], std::string& sEr
 		skip_arg();
 
 		const char* szOutFile = get_arg();
-		if(szOutFile==NULL)
+		if(szOutFile==nullptr)
 		{
 			sErrMsg = "Invalid argument.";
             goto exit;
@@ -465,7 +463,7 @@ int CServerThread::ProcessServerCommand(int argc, char* argv[], std::string& sEr
 		skip_arg();
 
 		const char* szOutFile = get_arg();
-		if(szOutFile==NULL)
+		if(szOutFile==nullptr)
 		{
 			sErrMsg = "Invalid argument.";
             goto exit;
@@ -478,7 +476,7 @@ int CServerThread::ProcessServerCommand(int argc, char* argv[], std::string& sEr
 	}
 	else if(cmp_arg("get-assync-info"))
     {
-		bool bEraseCompleted = false;
+		bool bEraseCompleted { false };
 		std::string sCommandId;
 
 		skip_arg();
@@ -515,7 +513,7 @@ int CServerThread::ProcessServerCommand(int argc, char* argv[], std::string& sEr
     }
 
 exit:
-    return nStatus;
+    return (nStatus);
 }
 
 //--------------------------------------------------
@@ -540,7 +538,7 @@ long CSitePollingThread::ThreadProc(void* pParam)
 		// Record starting time
         double start_time = microtime();
 
-        int nRet = 1; // ret code
+		int nRet { 1 }; // ret code
 
 #ifdef _WIN32
         // Execute PHP script
@@ -561,7 +559,7 @@ long CSitePollingThread::ThreadProc(void* pParam)
 		// Record finish time
         double finish_time = microtime();
 		// Calculate duration
-        double duration = (finish_time-start_time)/1000;
+		double duration { (finish_time - start_time) / 1000 };
 
 		// Check script's ret val
         if(nRet!=0)

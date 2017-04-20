@@ -3,6 +3,9 @@
 //! \author Oleg Krivtsov
 //! \date Feb 2012
 
+#ifndef DAEMONCONSOLE_H
+#define DAEMONCONSOLE_H
+
 #include "stdafx.h"
 #include "Daemon.h"
 #include "Misc.h"
@@ -15,7 +18,6 @@
 class CDaemonConsole
 {
 public:
-
 	//! Constructor.
 	CDaemonConsole();
 
@@ -42,3 +44,4 @@ private:
 	static CDaemon* m_pDaemon; //!< Pointer to daemon singleton.
 };
 
+#endif

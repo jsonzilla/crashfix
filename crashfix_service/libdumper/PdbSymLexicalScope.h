@@ -22,25 +22,25 @@ public:
     virtual ~CPdbSymLexicalScope();
 
     //! Returns unique Id of this lexical scope.
-    DWORD GetLexicalScopeId();
+	DWORD GetLexicalScopeId() const;
 
     //! Returns Id of the parent scope. Module scope has zero Id.
-    CPdbSymLexicalScope* GetParentLexicalScope();
+	CPdbSymLexicalScope*GetParentLexicalScope() const;
 
     //! Returns count of child lexical scopes.
-    UINT GetChildScopeCount();
+	UINT GetChildScopeCount() const;
 
     //! Returns child scope by its zero-based index in the list
-    CPdbSymLexicalScope* GetChildScope(int nIndex);
+	CPdbSymLexicalScope*GetChildScope(int nIndex);
 
     //! Adds child lexical scope
-    void AddChildScope(CPdbSymLexicalScope* pChild);
+	void AddChildScope(CPdbSymLexicalScope* const pChild);
 
     //! Returns count of symbols in this scope.
-    UINT GetSymbolCount();
+	UINT GetSymbolCount() const;
 
     //! Returns symbol in this scope by symbol's index.
-    CPdbSymbol* GetSymbol(int nIndex);
+	CPdbSymbol*GetSymbol(int nIndex);
 
     //! Adds symbol to this scope
     void AddSymbol(CPdbSymbol* pSymbol);

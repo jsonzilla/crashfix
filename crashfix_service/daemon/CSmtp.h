@@ -1,11 +1,8 @@
 // CSmtp.h: interface for the Smtp class.
 //
 //////////////////////////////////////////////////////////////////////
-
-#pragma once
 #ifndef __CSMTP_H__
 #define __CSMTP_H__
-
 
 #include <vector>
 #include <string.h>
@@ -101,7 +98,7 @@ public:
 		SENDBUF_IS_EMPTY,
 		OUT_OF_MSG_RANGE,
 	};
-	ECSmtp(CSmtpError err_, const char* responce_=NULL) : ErrorCode(err_){if(responce_!=NULL) ServerResponce = responce_;}
+	ECSmtp(CSmtpError err_, const char* responce_=nullptr) : ErrorCode(err_){if(responce_!=nullptr) ServerResponce = responce_;}
 	CSmtpError GetErrorNum(void) const {return ErrorCode;}
 	std::string GetErrorText(void) const;
 	std::string GetServerResponce(void) const {return ServerResponce;}
@@ -116,9 +113,9 @@ class CSmtp
 public:
 	CSmtp();
 	virtual ~CSmtp();
-	void AddRecipient(const char *email, const char *name=NULL);
-	void AddBCCRecipient(const char *email, const char *name=NULL);
-	void AddCCRecipient(const char *email, const char *name=NULL);
+	void AddRecipient(const char *email, const char *name=nullptr);
+	void AddBCCRecipient(const char *email, const char *name=nullptr);
+	void AddCCRecipient(const char *email, const char *name=nullptr);
 	void AddAttachment(const char *path);
 	void AddMsgLine(const char* text);
 	void DelRecipients(void);
@@ -191,4 +188,4 @@ private:
 };
 
 
-#endif // __CSMTP_H__
+#endif

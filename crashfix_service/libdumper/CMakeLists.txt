@@ -19,7 +19,7 @@ endif(UNIX)
 # Enable precompiled headers to improve compilation speed
 if(UNIX)
 	ADD_PCH_RULE("stdafx.cpp"  source_files)
-	SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ldl")
+	SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ldl -std=c++11")
 else(UNIX)
 	ADD_MSVC_PRECOMPILED_HEADER("stdafx.h" "stdafx.cpp" source_files)
 endif(UNIX)

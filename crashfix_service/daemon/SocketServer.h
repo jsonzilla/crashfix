@@ -2,8 +2,9 @@
 //! \brief Socket server implementation.
 //! \author Oleg Krivtsov
 //! \date 2011
+#ifndef SOCKETSERVER_H
+#define SOCKETSERVER_H
 
-#pragma once
 #include "stdafx.h"
 #include "CritSec.h"
 #include "ServerThread.h"
@@ -73,7 +74,9 @@ public:
     //! @param[in] nMaxQueueSize Maximum size of request queue.
     //! @param[in] nTotalThreads Total count of concurrent threads.
     //! @param[in] pLog Pointer to log object.
-    bool Init(CDaemon* pDaemon, int nPort, int nMaxQueueSize, int nTotalThreads, int nMaxMemUsageMB, CLog* pLog);
+	bool Init(CDaemon* pDaemon, const int nPort, const int nMaxQueueSize,
+			const int nTotalThreads,
+			const int nMaxMemUsageMB, CLog* pLog);
 
     //! Terminates the socket server (closes all socket connections).
     void Terminate();
@@ -151,32 +154,32 @@ private:
 	//! @param[in] nCmdId Command id.	
 	//! @param[in] nCompletionStatus Completion status.
 	//! @param[in] sErrorMsg Error message.
-	bool UpdateAssyncCommandInfoOnCompletion(const char* nCmdId, int nCompletionStatus, std::string& sErrorMsg);
+	bool UpdateAssyncCommandInfoOnCompletion(const char* const nCmdId, const int nCompletionStatus, std::string& sErrorMsg);
 
 	//! Returns the information on a single command or all assynchronous commands being processed.
-	int GetAssyncCommandInfo(std::string& sErrorMsg, const char* szCommandId=NULL, bool bEraseCompleted=true);	
+	int GetAssyncCommandInfo(std::string& sErrorMsg, const char* szCommandId=nullptr, bool bEraseCompleted=true);	
 
     /* Variables used internally */
 
-	CDaemon* m_pDaemon;                   //!< Owner daemon.
-    SOCK m_ServerSock;                    //!< Server socket.
+	CDaemon* m_pDaemon = nullptr;                   //!< Owner daemon.
+    SOCK m_ServerSock = 0;                    //!< Server socket.
     struct sockaddr_in m_Server;          //!< Sockaddr structure.
-    int m_nServerPort;                    //!< Port number we listen on.
-    int m_nMaxRequestQueueSize;           //!< Request queue size limit.
-    int m_nTotalThreads;                  //!< Size of thread pool.
-	int m_nMaxMemUsageMB;                 //!< Max mem usage (MB).
+    int m_nServerPort = -1;                    //!< Port number we listen on.
+    int m_nMaxRequestQueueSize = 5;           //!< Request queue size limit.
+    int m_nTotalThreads = 2;                  //!< Size of thread pool.
+	int m_nMaxMemUsageMB = 100;                 //!< Max mem usage (MB).
     std::string m_sErrorMsg;              //!< Last error message.
     std::vector<CServerThread*> m_aThreads; //!< Thread pool.
-	CSitePollingThread* m_pPollingThread;   //!< Site polling thread.
+	CSitePollingThread* m_pPollingThread = nullptr;   //!< Site polling thread.
     std::queue<RequestInfo> m_RequestQueue; //!< Request queue.
 	std::map<std::string, AssyncCommandInfo> m_aAssyncCommandInfo;	//!< List of assync commands.	
-	int m_nAssyncCommandIdSeed;           //!< Used to generate unique IDs for assync commands.
-    int m_nBusyThreads;                   //!< Count of busy threads.
-    bool m_bRunning;                      //!< Running flag.
-    CLog* m_pLog;                         //!< Error log.
+	int m_nAssyncCommandIdSeed = 0;           //!< Used to generate unique IDs for assync commands.
+    int m_nBusyThreads = 0;                   //!< Count of busy threads.
+    bool m_bRunning = false;                      //!< Running flag.
+    CLog* m_pLog = nullptr;                         //!< Error log.
     CCritSec m_Lock;                      //!< Synchronisation object.
     CCondVar m_Cond;                      //!< Conditional variable (used to wake up a thread from pool).
 	CPdbCache m_PdbCache;                 //!< PDB cache.	
 };
 
-
+#endif

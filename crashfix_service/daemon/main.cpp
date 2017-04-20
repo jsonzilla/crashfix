@@ -13,17 +13,16 @@
 
 int main(int argc, char* argv[])
 {
-	CDaemonConsole DaemonConsole;
+	CDaemonConsole DaemonConsole { };
 	
-	int nResult = DaemonConsole.Run(argc, argv);
+	const int nResult = DaemonConsole.Run(argc, argv);
 
-	if(!DaemonConsole.GetErrorMsg().empty())
-    {
+	if(!DaemonConsole.GetErrorMsg().empty()) {
         printf("%s\n", DaemonConsole.GetErrorMsg().c_str());
         printf("\nType --help for available commands.\n\n");
-        return 1;
+        return (1);
     }
 
-	return nResult;
+	return (nResult);
 }
 

@@ -2,8 +2,9 @@
 //! \brief Daemon implementation.
 //! \author Oleg Krivtsov
 //! \date 2011
+#ifndef DAEMON_H
+#define DAEMON_H
 
-#pragma once
 #include "stdafx.h"
 #include "Log.h"
 #include "SocketServer.h"
@@ -13,9 +14,9 @@
 #define PRODUCT_NAME_BASE64 "Y3Jhc2hmaXg" // base-64 encoded "crashfix"
 
 // Error codes
-#define R_SUCCESS 0
-#define R_UNEXPECTED_ERROR 1
-#define R_INVALID_PARAM 2
+constexpr auto R_SUCCESS = 0;
+constexpr auto R_UNEXPECTED_ERROR = 1;
+constexpr auto R_INVALID_PARAM = 2;
 
 //! Monitor launching option
 enum eMonitorOption
@@ -144,7 +145,6 @@ public:
 #endif
 
 protected:
-
 	//! Launches monitoring process. The monitoring process checks
 	//! daemon's status in loop and notifies the webmaster on errors.
 	//! It can also restart the daemon.
@@ -252,32 +252,32 @@ protected:
 	std::string m_sLicenseFile;        //!< License file.
     std::string m_sPIDFile;            //!< PID file path.
     std::string m_sConfigFile;         //!< Config file path.
-    int m_nThreadCount;                //!< Count of threads.
-    int m_nMaxQueueSize;               //!< Maximum queue size.
-    int m_nServerPort;                 //!< Socket server port.
+    int m_nThreadCount = 0;                //!< Count of threads.
+    int m_nMaxQueueSize = 0;               //!< Maximum queue size.
+    int m_nServerPort = 0;                 //!< Socket server port.
 	std::string m_sWebRootDir;         //!< The directory where index.php is located.
 	std::string m_sPollCommand;        //!< Polling command
-	bool m_bRestartedAfterCrash;       //!< Monitor has restarted us after our crash.
+	bool m_bRestartedAfterCrash = false;       //!< Monitor has restarted us after our crash.
 
     // Logging related settings
     std::string m_sErrorLogFile;       //!< Error log path.
-    int m_nLoggingLevel;               //!< Logging level (0-minimum, 2-maximum).
-    int m_nErrorLogMaxSizeKB;          //!< Maximum size of error log file
+    int m_nLoggingLevel = 0;               //!< Logging level (0-minimum, 2-maximum).
+    int m_nErrorLogMaxSizeKB = 0;          //!< Maximum size of error log file
 
 	// PDB cache related settings
-    int m_nCacheMaxEntries;            //!< Maximum entries in cache.
-	int m_nCacheMaxMemUsageMB;         //!< Maximum memory consumption in MB.
+    int m_nCacheMaxEntries = 0;            //!< Maximum entries in cache.
+	int m_nCacheMaxMemUsageMB = 0;         //!< Maximum memory consumption in MB.
 
     // Monitoring process related settings
     std::string m_sMonitorLogFile;     //!< Path to monitor.log.
     std::string m_sWebmasterEmail;     //!< Webmaster's email address.
-    bool m_bLaunchMonitorProcess;      //!< Should we launch monitoring process when starting the daemon?
+    bool m_bLaunchMonitorProcess = false;      //!< Should we launch monitoring process when starting the daemon?
     std::string m_sSmtpServerHost;     //!< SMTP server host.
-    int m_nSmtpServerPort;             //!< SMTP server port.
+    int m_nSmtpServerPort = 25;             //!< SMTP server port.
 	std::string m_sSmtpLogin;          //!< SMTP login (optional).
 	std::string m_sSmtpPassword;       //!< SMTP password (optional).
-    bool m_bNotifyWebmasterOnErrors;   //!< Should we notify webmaster on errors?
-    bool m_bRestartDaemonOnCrash;      //!< Should we restart daemon on errors?
+    bool m_bNotifyWebmasterOnErrors = false;   //!< Should we notify webmaster on errors?
+    bool m_bRestartDaemonOnCrash = true;      //!< Should we restart daemon on errors?
     int m_nPidToMonitor;               //!< ID of the process to monitor.
     //bool m_bCriticalError;             //!< Were there any critical errors?
 	CCritSec m_csLock;
@@ -286,7 +286,7 @@ protected:
     // Owned objects
     CLog m_Log;                        //!< Log.
     CSocketServer m_SocketServer;      //!< Socket server.
-    eMonitorOption m_MonitorOption;    //!< Monitor option.
+    eMonitorOption m_MonitorOption = MO_UNDEFINED;    //!< Monitor option.
     static CDaemon* m_pInstance;       //!< Pointer to this daemon instance.
 #ifdef _WIN32
 	static SERVICE_STATUS m_ServiceStatus; //!< Status of NT service
@@ -296,5 +296,9 @@ protected:
 #else
 	struct sigaction m_OldSIGCHLDAction; //!< Old SIGCHLD signal action
 #endif
+
+private:
+	void WaitDeadProcess();
 };
 
+#endif

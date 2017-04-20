@@ -49,11 +49,10 @@ struct FileItem
 //! Info passed to callback function
 struct CallbackInfo
 {
-	enum eReason
-	{
-		REASON_ITEM_STATUS_CHANGED = 0, //!< Status of file item has changed.
-		REASON_PROGRESS_UPDATED    = 1, //!< Progress of the item has been updated
-		REASON_UPLOAD_COMPLETE     = 2, //!< All files were uploaded
+	const enum eReason {
+		REASON_ITEM_STATUS_CHANGED = 0,
+		REASON_PROGRESS_UPDATED = 1,
+		REASON_UPLOAD_COMPLETE = 2
 	} m_Reason;
 
 	int m_nIndex;    //!< File index.

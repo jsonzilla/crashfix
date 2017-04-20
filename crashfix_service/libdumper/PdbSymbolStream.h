@@ -57,7 +57,7 @@ public:
 		CMsfStream* pStream, 
 		DWORD dwOffsetInStream, 
 		UINT uSize, 
-		LPDWORD pdwNewOffsInStream=NULL, 
+		LPDWORD pdwNewOffsInStream=nullptr,
 		DWORD dwFlags=0);
 
 	//! Frees the resources used by the stream.
@@ -66,11 +66,11 @@ public:
     //! Returns count of symbol records.
     int GetSymbolCount();
 
-    //! Returns symbol by its zero-based index; or NULL if there is no such a symbol.
+    //! Returns symbol by its zero-based index; or nullptr if there is no such a symbol.
     CPdbSymbol* GetSymbol(int nIndex);
 
     //! Gets symbol by its offset in stream.
-    //! \return Pointer to symbol or NULL if there is no symbol by such offset.
+    //! \return Pointer to symbol or nullptr if there is no symbol by such offset.
     int GetSymbolIndexByOffsInStream(DWORD dwStartOffs);
 
     //! Gets symbol that contains the specified virtual address (RVA).

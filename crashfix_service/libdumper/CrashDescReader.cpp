@@ -37,7 +37,7 @@ CCrashDescReader::~CCrashDescReader()
 bool CCrashDescReader::Init(std::wstring sFileName)
 {
     TiXmlDocument doc;
-    FILE* f = NULL;
+    FILE* f = nullptr;
 
     if(m_bInitialized)
         Destroy();
@@ -50,7 +50,7 @@ bool CCrashDescReader::Init(std::wstring sFileName)
     f = fopen(sUtf8FileName.c_str(), "rb");
 #endif
 
-    if(f==NULL)
+    if(f==nullptr)
         return false; // File can't be opened
 
     // Open XML document
@@ -64,7 +64,7 @@ bool CCrashDescReader::Init(std::wstring sFileName)
     TiXmlHandle hDoc(&doc);
 
     TiXmlHandle hRoot = hDoc.FirstChild("CrashRpt").ToElement();
-    if(hRoot.ToElement()==NULL)
+    if(hRoot.ToElement()==nullptr)
     {
         if(LoadXmlv10(hDoc)==0)
         {
@@ -78,7 +78,7 @@ bool CCrashDescReader::Init(std::wstring sFileName)
     // Get generator version
 
     const char* szCrashRptVersion = hRoot.ToElement()->Attribute("version");
-    if(szCrashRptVersion!=NULL)
+    if(szCrashRptVersion!=nullptr)
     {
         m_dwGeneratorVersion = atoi(szCrashRptVersion);
     }
@@ -367,9 +367,9 @@ bool CCrashDescReader::Init(std::wstring sFileName)
             const char* szFileDescription = hFileItem.ToElement()->Attribute("description");
 
             std::wstring sFileName, sFileDescription;
-            if(szFileName!=NULL)
+            if(szFileName!=nullptr)
                 sFileName = strconv::a2w(szFileName);
-            if(szFileName!=NULL)
+            if(szFileName!=nullptr)
                 sFileDescription = strconv::a2w(szFileDescription);
 
             FileItem fi;
@@ -393,9 +393,9 @@ bool CCrashDescReader::Init(std::wstring sFileName)
             const char* szValue = hProp.ToElement()->Attribute("value");
 
             std::wstring sName, sValue;
-            if(szName!=NULL)
+            if(szName!=nullptr)
                 sName = strconv::a2w(szName);
-            if(szValue!=NULL)
+            if(szValue!=nullptr)
                 sValue = strconv::a2w(szValue);
 
             CustomProp cp;
@@ -446,7 +446,7 @@ void CCrashDescReader::Destroy()
 int CCrashDescReader::LoadXmlv10(TiXmlHandle hDoc)
 {
     TiXmlHandle hRoot = hDoc.FirstChild("Exception").ToElement();
-    if(hRoot.ToElement()==NULL)
+    if(hRoot.ToElement()==nullptr)
     {
         return -3; // Invalid XML structure
     }
@@ -459,10 +459,10 @@ int CCrashDescReader::LoadXmlv10(TiXmlHandle hDoc)
 
     TiXmlHandle hExceptionRecord = hRoot.FirstChild("ExceptionRecord").ToElement();
 
-    if(hExceptionRecord.ToElement()!=NULL)
+    if(hExceptionRecord.ToElement()!=nullptr)
     {
         const char* szImageName = hRoot.ToElement()->Attribute("ModuleName");
-        if(szImageName!=NULL)
+        if(szImageName!=nullptr)
         {
             m_sImageName = strconv::a2w(szImageName);
 

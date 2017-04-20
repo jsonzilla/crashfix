@@ -2,8 +2,9 @@
 //! \brief Implements a server thread.
 //! \author Oleg Krivtsov
 //! \date 2011
+#ifndef SERVERTHREAD_H
+#define SERVERTHREAD_H
 
-#pragma once
 #include "stdafx.h"
 #include "Thread.h"
 #include "CritSec.h"
@@ -13,7 +14,7 @@ typedef SOCKET SOCK;
 #define CLOSESOCK(x) closesocket(x)
 #define IOCTLSOCKET ioctlsocket
 #else
-typedef int SOCK;
+using SOCK = int;
 #define CLOSESOCK(x) close(x)
 #define INVALID_SOCKET -1
 #define IOCTLSOCKET ioctl
@@ -80,7 +81,7 @@ private:
     //! Processes a server command
     int ProcessServerCommand(int argc, char* argv[], std::string& sErrMsg);
 
-    CSocketServer* m_pServer;  //!< Owner server.
+	CSocketServer* m_pServer;  //!< Owner server.
     CCritSec m_CritSec;        //!< Critical section.
     int m_nThreadId;           //!< Thread number.
     CLog* m_pLog;              //!< Log.
@@ -109,4 +110,4 @@ private:
 	std::string m_sPollCommand; //!< Path to PHP script to poll.
 };
 
-
+#endif

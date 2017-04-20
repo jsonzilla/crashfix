@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
     cp.SubstitutePdbCache(&PdbCache, false);
     
     // Process command
-    int nRetCode = cp.Run(argc, argv);
+	const int nRetCode = cp.Run(argc, argv);
 
     // Print error message
     printf("%s\n", cp.GetErrorMsg().c_str());

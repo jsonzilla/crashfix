@@ -14,8 +14,8 @@
 CCrashReportReader::CCrashReportReader()
 {
     m_hZip = 0;
-    m_pDescReader = NULL;
-    m_pDmpReader = NULL;
+    m_pDescReader = nullptr;
+    m_pDmpReader = nullptr;
 }
 
 CCrashReportReader::~CCrashReportReader()
@@ -45,7 +45,7 @@ BOOL CCrashReportReader::Init(std::wstring sFileName)
 	    
     // Open ZIP archive
     m_hZip = unzOpen(strconv::w2a(sFileName).c_str());
-    if(m_hZip==NULL)
+    if(m_hZip==nullptr)
     {
         SetErrorMsg(L"Error opening ZIP archive.");
         goto exit;
@@ -53,11 +53,11 @@ BOOL CCrashReportReader::Init(std::wstring sFileName)
 
     // Look for v1.1 crash description XML
     xml_find_res = unzLocateFile(m_hZip, (const char*)"crashrpt.xml", 1);
-    zr = unzGetCurrentFileInfo(m_hZip, &fi, szXmlFileName, 1024, NULL, 0, NULL, 0);
+    zr = unzGetCurrentFileInfo(m_hZip, &fi, szXmlFileName, 1024, nullptr, 0, nullptr, 0);
 
     // Look for v1.1 crash dump
     dmp_find_res = unzLocateFile(m_hZip, (const char*)"crashdump.dmp", 1);
-    zr = unzGetCurrentFileInfo(m_hZip, &fi, szDmpFileName, 1024, NULL, 0, NULL, 0);
+    zr = unzGetCurrentFileInfo(m_hZip, &fi, szDmpFileName, 1024, nullptr, 0, nullptr, 0);
 
     // If xml and dmp still not found, assume it is v1.0
     if(xml_find_res!=UNZ_OK && dmp_find_res!=UNZ_OK)
@@ -69,7 +69,7 @@ BOOL CCrashReportReader::Init(std::wstring sFileName)
             for(;;)
             {
 				unz_file_info fi;
-                zr = unzGetCurrentFileInfo(m_hZip, &fi, szDmpFileName, 1024, NULL, 0, NULL, 0);
+                zr = unzGetCurrentFileInfo(m_hZip, &fi, szDmpFileName, 1024, nullptr, 0, nullptr, 0);
                 if(zr!=UNZ_OK)
                     break;
 
@@ -101,7 +101,7 @@ BOOL CCrashReportReader::Init(std::wstring sFileName)
         std::string sXmlName = sAppName + ".xml";
         zr = unzLocateFile(m_hZip, sXmlName.c_str(), 1);
 		unz_file_info fi;
-        zr = unzGetCurrentFileInfo(m_hZip, &fi, szXmlFileName, 1024, NULL, 0, NULL, 0);
+        zr = unzGetCurrentFileInfo(m_hZip, &fi, szXmlFileName, 1024, nullptr, 0, nullptr, 0);
         if(zr==UNZ_OK)
         {
             xml_find_res = UNZ_OK;
@@ -181,7 +181,7 @@ BOOL CCrashReportReader::Init(std::wstring sFileName)
         if(!bReadMiniDump)
         {
             delete m_pDmpReader;
-            m_pDmpReader = NULL;
+            m_pDmpReader = nullptr;
             SetErrorMsg(L"Error opening minidump file.");
             goto exit;
         }
@@ -199,7 +199,7 @@ BOOL CCrashReportReader::Init(std::wstring sFileName)
         for(;;)
         {
             zr = unzGetCurrentFileInfo(m_hZip,
-                &fi, szFileName, 1024, NULL, 0, NULL, 0);
+                &fi, szFileName, 1024, nullptr, 0, nullptr, 0);
             if(zr!=UNZ_OK)
                 break;
 
@@ -219,22 +219,22 @@ exit:
 
     if(status!=0)
     {
-        if(m_pDescReader!=NULL)
+        if(m_pDescReader!=nullptr)
         {
             delete m_pDescReader;
-            m_pDescReader = NULL;
+            m_pDescReader = nullptr;
         }
 
         if(m_pDmpReader)
         {
             delete m_pDmpReader;
-            m_pDmpReader = NULL;
+            m_pDmpReader = nullptr;
         }
 
         if(m_hZip!=0)
         {
             unzClose(m_hZip);
-            m_hZip = NULL;
+            m_hZip = nullptr;
         }
     }
 
@@ -251,19 +251,19 @@ void CCrashReportReader::Destroy()
 	if(m_pDescReader)
 	{
 		delete m_pDescReader;
-		m_pDescReader = NULL;
+		m_pDescReader = nullptr;
 	}
 
 	if(m_pDmpReader)
 	{
 		delete m_pDmpReader;
-		m_pDmpReader = NULL;
+		m_pDmpReader = nullptr;
 	}
 
 	if(m_hZip)
     {
         unzClose(m_hZip);
-        m_hZip = NULL;
+        m_hZip = nullptr;
     }
 
 	if(!m_sMiniDumpTempName.empty())
@@ -293,7 +293,7 @@ int CCrashReportReader::UnzipFile(unzFile hZip, const char* szFileName, const wc
     int status = -1;
     int zr=0;
     int open_file_res = 0;
-    FILE* f = NULL;
+    FILE* f = nullptr;
     BYTE buff[1024];
     int read_len = 0;
     std::string sUtf8OutFileName = strconv::w2a(szOutFileName);
@@ -312,7 +312,7 @@ int CCrashReportReader::UnzipFile(unzFile hZip, const char* szFileName, const wc
     f = fopen(sUtf8OutFileName.c_str(), "wb");
 #endif
 
-    if(f==NULL)
+    if(f==nullptr)
         goto cleanup;
 
     for(;;)
@@ -337,7 +337,7 @@ cleanup:
     if(open_file_res==UNZ_OK)
         unzCloseCurrentFile(hZip);
 
-    if(f!=NULL)
+    if(f!=nullptr)
         fclose(f);
 
     return status;
@@ -416,8 +416,7 @@ std::wstring CCrashReportReader::GetTempFileName()
 
     return szTempFile;
 #else
-
-    char* szTmpName = tmpnam(NULL);
+    char* szTmpName = tmpnam(nullptr);
     return std::wstring(strconv::a2w(szTmpName));
 
 #endif
