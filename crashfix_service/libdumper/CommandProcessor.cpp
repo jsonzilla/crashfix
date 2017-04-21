@@ -1135,8 +1135,7 @@ int CCommandProcessor::DumpCrashReport(LPCWSTR szCrashRptFileName, LPCWSTR szOut
 	doc.PutTableCell(32, true, "%s", "Value");
 	doc.EndTableRow();
 
-	int i;
-	for(i=0; i<pCrashDesc->GetCustomPropCount(); i++)
+	for(int i=0; i<pCrashDesc->GetCustomPropCount(); ++i)
 	{
 		CustomProp* pcp = pCrashDesc->GetCustomProp(i);
 		doc.BeginTableRow();
@@ -1157,7 +1156,7 @@ int CCommandProcessor::DumpCrashReport(LPCWSTR szCrashRptFileName, LPCWSTR szOut
 	doc.PutTableCell(32, true, "%s", "Description");
 	doc.EndTableRow();
 
-	for(i=0; i<pCrashDesc->GetFileItemCount(); i++)
+	for(int i=0; i<pCrashDesc->GetFileItemCount(); ++i)
 	{
 		FileItem* pfi = pCrashDesc->GetFileItem(i);
 		if(pfi==NULL)
@@ -1174,7 +1173,7 @@ int CCommandProcessor::DumpCrashReport(LPCWSTR szCrashRptFileName, LPCWSTR szOut
 
 	if(pMiniDump)
 	{
-		for(i=0; i<pMiniDump->GetThreadCount(); i++)
+		for(int i=0; i<pMiniDump->GetThreadCount(); ++i)
 		{
 			MiniDumpThreadInfo* pThread = pMiniDump->GetThreadInfo(i);
 			if(!pThread)
@@ -1286,8 +1285,8 @@ int CCommandProcessor::DumpCrashReport(LPCWSTR szCrashRptFileName, LPCWSTR szOut
 					md5.MD5Final(md5_hash, &md5_ctx);
 
 					std::string sStackTraceMD5;
-					int i;
-					for(i=0; i<16; i++)
+
+					for(int i=0; i<16; i++)
 					{
 						sprintf(szBuffer, "%02x", md5_hash[i]);
 						sStackTraceMD5 += szBuffer;
@@ -1313,7 +1312,7 @@ int CCommandProcessor::DumpCrashReport(LPCWSTR szCrashRptFileName, LPCWSTR szOut
 		doc.EndTableRow();
 
 		// Walk through minidump modules
-		for(i=0; i<pMiniDump->GetModuleCount(); i++)
+		for(int i=0; i<pMiniDump->GetModuleCount(); ++i)
 		{
 			// Get current module info
 			MiniDumpModuleInfo* pmi = pMiniDump->GetModuleInfo(i);
@@ -1586,7 +1585,7 @@ exit:
 	{
 		FILE* f = NULL;
 		COutputter doc;
-		char szBuffer[1024];
+		char szBufferIn[1024];
 
 #ifdef _WIN32
 		fopen_s(&f, strconv::w2a(szOutFile).c_str(), "wt");
@@ -1623,8 +1622,8 @@ exit:
 			doc.PutRecord("GUID",  "%s", strconv::w2utf8(sGUID).c_str());
 
 			// Write Age
-			sprintf(szBuffer, "%d", pHeaders->GetAge());
-			doc.PutRecord("Age",  "%s", szBuffer);
+			sprintf(szBufferIn, "%d", pHeaders->GetAge());
+			doc.PutRecord("Age",  "%s", szBufferIn);
 		}
 
 		doc.EndSection();
