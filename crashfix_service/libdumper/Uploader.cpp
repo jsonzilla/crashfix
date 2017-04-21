@@ -216,7 +216,7 @@ bool CUploader::SearchFiles(std::wstring sSearchPattern, int nLevel)
 		
 		LARGE_INTEGER lFileSize;
 		HANDLE hFile = CreateFile(sFileName.c_str(), 
-            GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, nullptr, nullptr);
+            GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, NULL, NULL);
         if(hFile!=INVALID_HANDLE_VALUE)
 		{
 			BOOL bGetSize = GetFileSizeEx(hFile, &lFileSize);
