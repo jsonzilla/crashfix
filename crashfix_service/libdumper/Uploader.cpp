@@ -17,11 +17,11 @@
 #define ENTRY_SEARCH_PATTERN  _T("SearchPattern")
 #define ENTRY_RECURSIVE_SEARCH _T("RecursiveSearch")
 
-CUploader* CUploader::m_pInstance = NULL;
+CUploader* CUploader::m_pInstance = nullptr;
 
 CUploader* CUploader::GetInstance()
 {
-	if(m_pInstance==NULL)
+	if(m_pInstance==nullptr)
 	{
 		m_pInstance = new CUploader();
 	}
@@ -33,10 +33,10 @@ CUploader::CUploader()
 {
 	m_bRecursiveSearch = false;
 	m_bUploadingNow = false;
-	m_hWndNotify = NULL;
-	m_pfnCallback = NULL;
-	m_lpCallbackParam = NULL;
-	m_hThread = NULL;
+	m_hWndNotify = nullptr;
+	m_pfnCallback = nullptr;
+	m_lpCallbackParam = nullptr;
+	m_hThread = nullptr;
 	m_nFileBeingUploaded = -1;
 
 	m_Profile.Initialize(_T("Software\\CrashFix\\Uploader"));
@@ -59,8 +59,8 @@ void CUploader::LoadPersistentSettings()
 	LPCTSTR szProjectName = m_Profile.GetProfileString(SECTION_GENERAL, ENTRY_PROJECT_NAME, _T("YourProjectName"), szBuffer, 512);
 	m_sProjectName = strconv::w2a(szProjectName);
 
-	LPCTSTR szSearchPattern = m_Profile.GetProfileString(SECTION_GENERAL, ENTRY_SEARCH_PATTERN, NULL, szBuffer, 512);
-	if(szSearchPattern!=NULL)
+	LPCTSTR szSearchPattern = m_Profile.GetProfileString(SECTION_GENERAL, ENTRY_SEARCH_PATTERN, nullptr, szBuffer, 512);
+	if(szSearchPattern!=nullptr)
 		AddSearchPattern(szSearchPattern);
 
 	bool bRecursiveSearch = 0!=m_Profile.GetProfileInt(SECTION_GENERAL, ENTRY_RECURSIVE_SEARCH, 0);
@@ -216,7 +216,7 @@ bool CUploader::SearchFiles(std::wstring sSearchPattern, int nLevel)
 		
 		LARGE_INTEGER lFileSize;
 		HANDLE hFile = CreateFile(sFileName.c_str(), 
-            GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, NULL, NULL); 
+            GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, nullptr, nullptr);
         if(hFile!=INVALID_HANDLE_VALUE)
 		{
 			BOOL bGetSize = GetFileSizeEx(hFile, &lFileSize);
@@ -276,7 +276,7 @@ int CUploader::GetFileCount()
 FileItem* CUploader::GetFileItem(int nIndex)
 {
 	if(nIndex<0 || nIndex>=(int)m_aFileItems.size())
-		return NULL;
+		return nullptr;
 
 	return &m_aFileItems[nIndex];
 }
@@ -287,7 +287,7 @@ void CUploader::SelectAllFileItems(bool bSelect)
 	for(i=0; i<GetFileCount(); i++)
 	{
 		FileItem* pfi = GetFileItem(i);
-		if(pfi==NULL)
+		if(pfi==nullptr)
 			continue;
 
 		pfi->m_bChecked = bSelect;
@@ -310,14 +310,14 @@ bool CUploader::StartFileUpload()
 	for(i=0; i<GetFileCount(); i++)
 	{
 		FileItem* pfi = GetFileItem(i);
-		if(pfi==NULL || !pfi->m_bChecked)
+		if(pfi==nullptr || !pfi->m_bChecked)
 			continue;
 
 		SetFileStatus(i, FUS_PENDING);
 	}
 
 	// Create working thread.
-	m_hThread = CreateThread(NULL, 0, UploadThread, this, 0, NULL);
+	m_hThread = CreateThread(nullptr, 0, UploadThread, this, 0, nullptr);
 
 	// Return immediately.
 	return true;
@@ -379,7 +379,7 @@ void CUploader::InternalUploadFiles()
 		}
 
 		CPdbHeadersStream* pHeaders = PdbReader.GetHeadersStream();
-		if(pHeaders==NULL)
+		if(pHeaders==nullptr)
 		{
 			m_Stats.m_nIgnored++; 
 			SetFileStatus(i, FUS_INVALID);						
@@ -540,7 +540,7 @@ void CUploader::SetCallback(LPUPLOADCALLBACK pfnCallback, LPVOID lpParam)
 void CUploader::SetFileStatus(int nIndex, FILE_UPLOAD_STATUS NewStatus)
 {
 	FileItem* pfi = GetFileItem(nIndex);
-	if(pfi==NULL)
+	if(pfi==nullptr)
 		return;
 
 	pfi->m_Status = NewStatus;
@@ -566,8 +566,8 @@ void CUploader::SetFileStatus(int nIndex, FILE_UPLOAD_STATUS NewStatus)
 
 void CUploader::NotifyFileUploadProgress(int nIndex)
 {
-	FileItem* pfi = GetFileItem(nIndex);
-	if(pfi==NULL)
+	FileItem* const pfi = GetFileItem(nIndex);
+	if(pfi==nullptr)
 		return;
 
 	if(m_pfnCallback)
@@ -596,7 +596,7 @@ void CUploader::NotifyUploadComplete()
 		CallbackInfo ci;
 		ci.m_Reason = CallbackInfo::REASON_UPLOAD_COMPLETE;
 		ci.m_nIndex = -1;
-		ci.m_pfi = NULL;
+		ci.m_pfi = nullptr;
 		ci.m_nProgress=100;		
 
 		// Call back

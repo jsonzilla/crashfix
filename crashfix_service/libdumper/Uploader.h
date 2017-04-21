@@ -49,7 +49,7 @@ struct FileItem
 //! Info passed to callback function
 struct CallbackInfo
 {
-	const enum eReason {
+	enum eReason {
 		REASON_ITEM_STATUS_CHANGED = 0,
 		REASON_PROGRESS_UPDATED = 1,
 		REASON_UPLOAD_COMPLETE = 2
