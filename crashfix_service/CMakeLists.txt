@@ -24,10 +24,10 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO ${CMAKE_BINARY_DIR}/lib)
- 
+
 # add the binary tree to the search path for include files
 # so that we will find Config.h
-include_directories(${PROJECT_BINARY_DIR} 
+include_directories(${PROJECT_BINARY_DIR}
 		${CMAKE_SOURCE_DIR}/thirdparty/tinyxml
 		${CMAKE_SOURCE_DIR}/thirdparty/zlib
 		${CMAKE_SOURCE_DIR}/thirdparty/minizip
@@ -44,7 +44,7 @@ MACRO(ADD_MSVC_PRECOMPILED_HEADER PrecompiledHeader PrecompiledSource SourcesVar
                                            OBJECT_OUTPUTS "${PrecompiledBinary}")
     SET_SOURCE_FILES_PROPERTIES(${Sources}
                                 PROPERTIES COMPILE_FLAGS "/Yu\"${PrecompiledBinary}\" /FI\"${PrecompiledBinary}\" /Fp\"${PrecompiledBinary}\""
-                                           OBJECT_DEPENDS "${PrecompiledBinary}")  
+                                           OBJECT_DEPENDS "${PrecompiledBinary}")
     # Add precompiled header to SourcesVar
     LIST(APPEND ${SourcesVar} ${PrecompiledSource})
   ENDIF(MSVC)
@@ -78,25 +78,26 @@ add_subdirectory("thirdparty/zlib")
 add_subdirectory("thirdparty/minizip")
 add_subdirectory("thirdparty/tinyxml")
 
-# Install 
+# Install
 if(UNIX)
 SET(CPACK_GENERATOR "DEB;RPM")
 SET(CPACK_PACKAGE_NAME "crashfix-service")
 SET(CPACK_PACKAGE_VENDOR "IP Oleg Krivtsov")
-SET(CPACK_PACKAGE_CONTACT "Oleg Krivtsov <conactus@crashfixsoftware.com>")
-SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Oleg Krivtsov <conactus@crashfixsoftware.com>")
+SET(CPACK_PACKAGE_CONTACT "Jeison Cardoso <zkzed6nz2@relay.firefox.com>")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Jeison Cardoso <zkzed6nz2@relay.firefox.com>")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "CrashFix Service")
 SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.TXT")
 SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/COPYRIGHT.TXT")
-SET(CPACK_PACKAGE_ARCHITECTURE "i386")
 SET(CPACK_PACKAGE_VERSION_MAJOR "1")
 SET(CPACK_PACKAGE_VERSION_MINOR "0")
-SET(CPACK_PACKAGE_VERSION_PATCH "4")
+SET(CPACK_PACKAGE_VERSION_PATCH "5")
 SET(CPACK_PACKAGE_INSTALL_DIRECTORY "CMake ${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}")
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 	SET(CPACK_SYSTEM_NAME "Linux-amd64")
+        SET(CPACK_PACKAGE_ARCHITECTURE "amd64")
 else(CMAKE_SIZEOF_VOID_P EQUAL 8)
-	SET(CPACK_SYSTEM_NAME "Linux-i386")
+	SET(CPACK_SYSTEM_NAME "Linux-i686")
+        SET(CPACK_PACKAGE_ARCHITECTURE "i686")
 endif(CMAKE_SIZEOF_VOID_P EQUAL 8)
 SET(CPACK_DEBIAN_PACKAGE_SECTION "utils")
 #SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6, libssl")
@@ -108,20 +109,20 @@ set(CPACK_RPM_USER_FILELIST "%ignore /etc" "%ignore /etc/init.d")
 include (CPack)
 
 file(WRITE ${CMAKE_BINARY_DIR}/var/log/crashfix/dummy.log)
-install(FILES ${CMAKE_BINARY_DIR}/var/log/crashfix/dummy.log 
+install(FILES ${CMAKE_BINARY_DIR}/var/log/crashfix/dummy.log
         DESTINATION /var/log/crashfix/ )
 
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/usr/share/crashfix/licenses)
-install(DIRECTORY ${CMAKE_BINARY_DIR}/usr/share/crashfix/licenses 
+install(DIRECTORY ${CMAKE_BINARY_DIR}/usr/share/crashfix/licenses
         DESTINATION /usr/share/crashfix )
 
-install(FILES ${CMAKE_SOURCE_DIR}/conf/crashfixd.conf.linux 
-        DESTINATION /etc/crashfix/ 
+install(FILES ${CMAKE_SOURCE_DIR}/conf/crashfixd.conf.linux
+        DESTINATION /etc/crashfix/
         RENAME crashfixd.conf
         PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ GROUP_WRITE WORLD_READ)
-		
+
 install(PROGRAMS ${CMAKE_SOURCE_DIR}/daemon/crashfixd.sh
-        DESTINATION /etc/init.d/ 
+        DESTINATION /etc/init.d/
         RENAME crashfixd)
-		
+
 endif(UNIX)
