@@ -423,13 +423,13 @@ class User extends CActiveRecord
 		$criteria->compare('user_id', $this->id);
 		$criteria->compare('project_id', $projectId);
 		$userRole =  UserProjectAccess::model()->find($criteria);
-        
+
         if($userRole!=null)
         {
             // Suggest the existing role
             return $userRole->usergroup_id;
         }
-        
+
         return $this->usergroup; // else suggest this user's group as default role for this project
 	}
 	

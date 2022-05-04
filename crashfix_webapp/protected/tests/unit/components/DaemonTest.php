@@ -19,14 +19,14 @@ class DaemonTest extends CDbTestCase
 		$model->username = "root";						
 		$model->password = "rootpwd";
 		$this->assertTrue($model->login());
-		
+
 		// Check daemon - assume success
 		$realCheck = false;
         $errorMsg = '';
 		$check = Yii::app()->daemon->checkDaemon($realCheck, $errorMsg);
 		$this->assertTrue($check==Daemon::DAEMON_CHECK_OK);
 		$this->assertTrue($realCheck);
-		
+
 		// Check daemon another time - assume success
 		$check = Yii::app()->daemon->checkDaemon($realCheck,$errorMsg);
 		$this->assertTrue($check==Daemon::DAEMON_CHECK_OK);

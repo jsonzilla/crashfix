@@ -8,10 +8,10 @@ class m120515_122132_initial extends CDbMigration
 		$q = '"';
 		if($this->dbConnection->driverName=='mysql')
 			$q = '`';
-		
+
 		return str_replace('"', $q, $subject);
 	}
-	
+
 	public function up()
 	{
 		// Create {{lookup}} table
@@ -25,7 +25,7 @@ class m120515_122132_initial extends CDbMigration
 						'position'=>'INTEGER NOT NULL',
 					)
 				);
-		
+
 		// Insert crash report statuses
 		$this->insert('{{lookup}}', 	
 				array(
@@ -34,7 +34,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>1,
 					'position'=>1,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Processing',
@@ -42,7 +42,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>2,
 					'position'=>2,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Ready',
@@ -60,7 +60,7 @@ class m120515_122132_initial extends CDbMigration
 				));
 
 		// Insert debug info statuses
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Waiting',
@@ -84,7 +84,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>3,
 					'position'=>3,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Invalid',
@@ -94,7 +94,7 @@ class m120515_122132_initial extends CDbMigration
 				));
 
 		// Insert user statuses
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Active',
@@ -102,7 +102,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>1,
 					'position'=>1,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Disabled',
@@ -112,7 +112,7 @@ class m120515_122132_initial extends CDbMigration
 				));
 
 		// Insert user group statuses
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Active',
@@ -120,7 +120,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>1,
 					'position'=>1,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Disabled',
@@ -130,7 +130,7 @@ class m120515_122132_initial extends CDbMigration
 				));
 
 		// Insert project statuses
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Active',
@@ -138,7 +138,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>1,
 					'position'=>1,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Disabled',
@@ -146,9 +146,9 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>2,
 					'position'=>2,
 				));
-		
+
 		// Insert operation statuses
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Started',
@@ -156,7 +156,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>1,
 					'position'=>1,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Succeeded',
@@ -164,7 +164,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>2,
 					'position'=>2,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Failed',
@@ -172,9 +172,9 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>3,
 					'position'=>3,
 				));
-		
+
 		// Insert symbol load statuses
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'No symbols loaded.',
@@ -182,7 +182,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>0,
 					'position'=>0,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Symbols loaded.',
@@ -190,9 +190,9 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>1,
 					'position'=>1,
 				));
-		
+
 		// Insert bug statuses
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'New',
@@ -200,7 +200,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>1,
 					'position'=>1,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Reviewed',
@@ -208,7 +208,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>2,
 					'position'=>2,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Accepted',
@@ -224,7 +224,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>4,
 					'position'=>4,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Fixed',
@@ -240,7 +240,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>102,
 					'position'=>6,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Duplicate',
@@ -256,7 +256,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>104,
 					'position'=>8,
 				));
-		
+
 		// Insert bug priority statuses
 
 		$this->insert('{{lookup}}', 	
@@ -266,7 +266,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>1,
 					'position'=>2,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Medium',
@@ -274,7 +274,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>2,
 					'position'=>1,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'High',
@@ -292,7 +292,7 @@ class m120515_122132_initial extends CDbMigration
 				));
 
 		// Insert bug reproducability statuses
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'NotTried',
@@ -300,7 +300,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>1,
 					'position'=>1,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Never',
@@ -308,7 +308,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>2,
 					'position'=>2,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Sometimes',
@@ -316,7 +316,7 @@ class m120515_122132_initial extends CDbMigration
 					'code'=>3,
 					'position'=>3,
 				));
-		
+
 		$this->insert('{{lookup}}', 	
 				array(
 					'name'=>'Always',
@@ -345,7 +345,7 @@ class m120515_122132_initial extends CDbMigration
 						'default_bug_status_filter'=>'VARCHAR(16) NOT NULL',
 					)
 				);
-		
+
 		// Insert standard user groups
 		$this->insert('{{usergroup}}', 	
 				array(					
@@ -365,7 +365,7 @@ class m120515_122132_initial extends CDbMigration
 					'default_sidebar_tab'=>'Digest',
 					'default_bug_status_filter'=>'open',
 				));
-		
+
 		$this->insert('{{usergroup}}', 	
 				array(					
 					'name'=>'Dev',
@@ -382,7 +382,7 @@ class m120515_122132_initial extends CDbMigration
 					'default_sidebar_tab'=>'Digest',
 					'default_bug_status_filter'=>'owned',
 				));
-		
+
 		$this->insert('{{usergroup}}', 	
 				array(					
 					'name'=>'QA',
@@ -399,7 +399,7 @@ class m120515_122132_initial extends CDbMigration
 					'default_sidebar_tab'=>'Digest',
 					'default_bug_status_filter'=>'verify',
 				));
-			
+
 		$this->insert('{{usergroup}}', 	
 				array(					
 					'name'=>'Guest',
@@ -416,7 +416,7 @@ class m120515_122132_initial extends CDbMigration
 					'default_sidebar_tab'=>'Digest',
 					'default_bug_status_filter'=>'open',
 				));
-		
+
 		// Create {{user}} table
 		$this->createTable('{{user}}',
 				array(
@@ -432,7 +432,7 @@ class m120515_122132_initial extends CDbMigration
 					'email'=>'VARCHAR(128) NOT NULL',
 				)
 			);
-		
+
 		// Insert root user
 		$this->insert('{{user}}', 	
 				array(					
@@ -445,7 +445,7 @@ class m120515_122132_initial extends CDbMigration
 					'flags'=>User::FLAG_STANDARD_USER|User::FLAG_PASSWORD_RESETTED,
 					'email'=>'test@localhost',	
 				));
-		
+
 		// Create {{appversion}} table
 		$this->createTable('{{appversion}}',
 				array(
@@ -456,7 +456,7 @@ class m120515_122132_initial extends CDbMigration
 					'CONSTRAINT uc_Version UNIQUE (project_id, version)'
 				)
 			);
-		
+
 		// Create {{project}} table
 		$this->createTable('{{project}}',
 				array(
@@ -471,7 +471,7 @@ class m120515_122132_initial extends CDbMigration
 					'debug_info_files_disc_quota'=>'INTEGER NOT NULL'
 				)
 			);
-				
+
 		// Create {{user_project_access}} table
 		$this->createTable('{{user_project_access}}',
 				array(
@@ -483,7 +483,7 @@ class m120515_122132_initial extends CDbMigration
 					//CONSTRAINT uc_UserID UNIQUE (user_id, project_id)
 				)
 			);
-		
+
 		// Create {{crashreport}} table
 		$this->createTable('{{crashreport}}',
 				array(
@@ -522,7 +522,7 @@ class m120515_122132_initial extends CDbMigration
 					'memory_usage_kbytes'=>'INTEGER'	
 				)
 			);
-		
+
 		// Create {{fileitem}} table
 		$this->createTable('{{fileitem}}',
 				array(					
@@ -532,7 +532,7 @@ class m120515_122132_initial extends CDbMigration
 					'description'=>'VARCHAR(512)'
 				)
 			);
-		
+
 		// Create {{customprop}} table
 		$this->createTable('{{customprop}}',
 				array(					
@@ -542,7 +542,7 @@ class m120515_122132_initial extends CDbMigration
 					'value'=>'TEXT NOT NULL'
 				)
 			);
-		
+
 		// Create {{thread}} table
 		$this->createTable('{{thread}}',
 				array(					
@@ -552,7 +552,7 @@ class m120515_122132_initial extends CDbMigration
 					'stack_trace_md5'=>'VARCHAR(32)'
 				)
 			);
-		
+
 		// Create {{stackframe}} table
 		$this->createTable('{{stackframe}}',
 				array(
@@ -571,7 +571,7 @@ class m120515_122132_initial extends CDbMigration
 
 				)
 			);
-		
+
 		// Create {{module}} table
 		$this->createTable('{{module}}',
 				array(					
@@ -584,7 +584,7 @@ class m120515_122132_initial extends CDbMigration
 					'timestamp'=>'INTEGER',
 				)
 			);
-		
+
 		// Create {{processingerror}} table
 		$this->createTable('{{processingerror}}',
 				array(					
@@ -594,7 +594,7 @@ class m120515_122132_initial extends CDbMigration
 					'message'=>'TEXT'
 				)
 			);
-		
+
 		// Create {{crashgroup}} table
 		$this->createTable('{{crashgroup}}',
 				array(					
@@ -607,7 +607,7 @@ class m120515_122132_initial extends CDbMigration
 					'md5'=>'VARCHAR(32) NOT NULL'
 				)
 			);
-		
+
 		// Create {{bug}} table
 		$this->createTable('{{bug}}',
 				array(
@@ -628,7 +628,7 @@ class m120515_122132_initial extends CDbMigration
 					'merged_into'=>'INTEGER'
 				)
 			);
-		
+
 		// Create {{bug_change}} table
 		$this->createTable('{{bug_change}}',
 				array(					
@@ -641,7 +641,7 @@ class m120515_122132_initial extends CDbMigration
 					'comment_id'=>'INTEGER'
 				)
 			);
-		
+
 		// Create {{bug_status_change}} table
 		$this->createTable('{{bug_status_change}}',
 				array(					
@@ -653,7 +653,7 @@ class m120515_122132_initial extends CDbMigration
 					'merged_into'=>'INTEGER'
 				)
 			);
-		
+
 		// Create {{bug_attachment}} table
 		$this->createTable('{{bug_attachment}}',
 				array(					
@@ -664,7 +664,7 @@ class m120515_122132_initial extends CDbMigration
 					'md5'=>'VARCHAR(32) NOT NULL'
 				)
 			);
-		
+
 		// Create {{bug_comment}} table
 		$this->createTable('{{bug_comment}}',
 				array(
@@ -673,7 +673,7 @@ class m120515_122132_initial extends CDbMigration
 					'text'=>'TEXT'
 				)
 			);
-		
+
 		// Create {{bug_crashreport}} table
 		$this->createTable('{{bug_crashreport}}',
 				array(
@@ -684,7 +684,7 @@ class m120515_122132_initial extends CDbMigration
 					//CONSTRAINT uc_Mapping UNIQUE (bug_id, crashreport_id)
 				)
 			);
-		
+
 		// Create {{bug_crashgroup}} table
 		$this->createTable('{{bug_crashgroup}}',
 				array(
@@ -695,7 +695,7 @@ class m120515_122132_initial extends CDbMigration
 					// CONSTRAINTuc_Mapping UNIQUE (bug_id, crashgroup_id)
 				)
 			);
-		
+
 		// Create {{debuginfo}} table
 		$this->createTable('{{debuginfo}}',
 				array(
@@ -710,7 +710,7 @@ class m120515_122132_initial extends CDbMigration
 					'filesize'=>'INTEGER NOT NULL'
 				)
 			);
-		
+
 		// Create {{operation}} table
 		$this->createTable('{{operation}}',
 				array(
@@ -726,7 +726,7 @@ class m120515_122132_initial extends CDbMigration
 					'operand3'=>'TEXT'
 				)
 			);
-		
+
 		// Create {{mail_queue}} table
 		$this->createTable('{{mail_queue}}',
 				array(
@@ -741,7 +741,7 @@ class m120515_122132_initial extends CDbMigration
 					'email_body'=>'TEXT NOT NULL'					
 				)
 			);
-		
+
 		// Create {{AuthItem}} table
 		$this->createTable('{{AuthItem}}',
 				array(
@@ -753,7 +753,7 @@ class m120515_122132_initial extends CDbMigration
 					$this->q('primary key ("name")')
 				)
 			);
-		
+
 		// Create {{AuthItemChild}} table
 		$this->createTable('{{AuthItemChild}}',
 				array(
@@ -764,7 +764,7 @@ class m120515_122132_initial extends CDbMigration
 					$this->q('foreign key ("child") references "{{AuthItem}}" ("name") on delete cascade on update cascade')
 				)
 			);
-		
+
 		// Create {{AuthAssignment}} table
 		$this->createTable('{{AuthAssignment}}',
 				array(
@@ -776,7 +776,7 @@ class m120515_122132_initial extends CDbMigration
 					$this->q('foreign key ("itemname") references "{{AuthItem}}" ("name") on delete cascade on update cascade')
 				)
 			);
-		
+
 		return true;		
 	}
 

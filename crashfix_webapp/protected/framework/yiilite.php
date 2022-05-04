@@ -2969,12 +2969,11 @@ class CHttpRequest extends CApplicationComponent
 class CCookieCollection extends CMap
 {
 	private $_request;
-	private $_initialized=false;
+	private $_initialized=true;
 	public function __construct(CHttpRequest $request)
 	{
 		$this->_request=$request;
 		$this->copyfrom($this->getCookies());
-		$this->_initialized=true;
 	}
 	public function getRequest()
 	{
@@ -10443,12 +10442,11 @@ if(jQuery.trim(value)!='') {
 class CListIterator implements Iterator
 {
 	private $_d;
-	private $_i;
+	private $_i = 0;
 	private $_c;
 	public function __construct(&$data)
 	{
 		$this->_d=&$data;
-		$this->_i=0;
 		$this->_c=count($this->_d);
 	}
 	public function rewind()
