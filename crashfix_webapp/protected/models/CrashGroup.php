@@ -140,16 +140,18 @@ class CrashGroup extends CActiveRecord
 		if($curProjectId==false)
 			return Null;
 
-        if(!isset($this->bugStatusFilter))
-			$this->bugStatusFilter = 'open';
+        if(!isset($this->bugStatusFilter)) { 
+		$this->bugStatusFilter = 'open';
+        }
 		        
-		$criteria=new CDbCriteria;
+	$criteria=new CDbCriteria;
         
         $criteria->compare('t.project_id', $curProjectId, false, 'AND');
 		$curProjectVer = false;
 		Yii::app()->user->getCurProjectVersions($curProjectVer);
-		if($curProjectVer!=-1)
+		if($curProjectVer!=-1) {
 			$criteria->compare('t.appversion_id', $curProjectVer, false, 'AND');
+		}
 		        
 		// Simple search filter
 		if(isset($this->filter))
