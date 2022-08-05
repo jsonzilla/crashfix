@@ -107,7 +107,7 @@ $this->widget('zii.widgets.CDetailView', array(
 		array(  
             'name'=>'appversion_id',
             'type'=>'text',
-            'value'=>$model->appVersion->version,
+            'value'=>is_object($model->appVersion) ? $model->appVersion->version :  'no-version',
         ),		
 		'crashguid',
 		array(  

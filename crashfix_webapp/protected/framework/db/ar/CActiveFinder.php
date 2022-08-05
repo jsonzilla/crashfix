@@ -1427,7 +1427,8 @@ class CStatElement
 		$pkTable=$parent->model->getTableSchema();
 
 		$fks=preg_split('/\s*,\s*/',$relation->foreignKey,-1,PREG_SPLIT_NO_EMPTY);
-		if(count($fks)!==count($pkTable->primaryKey))
+
+		if(is_countable($fks) && is_countable($pkTable->primaryKey) && (count($fks)!==count($pkTable->primaryKey)))
 			throw new CDbException(Yii::t('yii','The relation "{relation}" in active record class "{class}" is specified with an invalid foreign key. The columns in the key must match the primary keys of the table "{table}".',
 						array('{class}'=>get_class($parent->model), '{relation}'=>$relation->name, '{table}'=>$pkTable->name)));
 

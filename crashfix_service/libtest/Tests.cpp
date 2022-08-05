@@ -1,4 +1,4 @@
-﻿//! \file Tests.cpp
+//! \file Tests.cpp
 //! \brief Base unit test functionality.
 //! \author Oleg Krivtsov
 //! \date 2010

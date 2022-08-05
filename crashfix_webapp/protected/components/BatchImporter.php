@@ -206,10 +206,8 @@ class BatchImporter
 												$path,
 												'application/zip',
 												filesize($path),
-												UPLOAD_ERR_OK
+												''
 												);	
-		    
-		    
                 // The following is to copy attachment file correctly.
                 $crashReport->fileAttachmentIsUploaded = false; 
                 

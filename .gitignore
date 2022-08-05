@@ -41,7 +41,7 @@
 /crashfix_webapp/assets
 /crashfix_webapp/nbproject
 /crashfix_webapp/protected/runtime
-
+build
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
@@ -62,3 +62,4 @@ dummy.log
 *.deb
 *.rpm
 CPack*Config.cmake
+.vs
