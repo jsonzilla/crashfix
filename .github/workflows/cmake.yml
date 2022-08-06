@@ -13,10 +13,12 @@ jobs:
     # name: boost
     #  run: sudo apt-get update && sudo apt-get install -yq libboost1.65-dev
     # build project
+    - name: cd
+      run: cd crashfix_service
     - name: mkdir
       run: mkdir build
-    - name: cmake build ./crashfix_service/
-      run: cmake -Bbuild -H.
+    - name: cmake build ..
+      run: cmake -B build -H.
     - name: cmake make
       run: cmake --build build/ --target all
     # run tests
