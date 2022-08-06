@@ -1,34 +1,26 @@
-name: CMake
-
+name: build and run tests
 on:
   push:
-    branches: [ "master" ]
+    branches: [ master ]
   pull_request:
-    branches: [ "master" ]
-
-env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: Release
-
+    branches: [ master ]
 jobs:
   build:
-    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
-    # You can convert this to a matrix build if you need cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Configure CMake
-      working-directory: ${{github.workspace}}/crashfix_service
-      run: cmake -B . -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-
-    - name: Build
-      working-directory: ${{github.workspace}}/crashfix_service
-      run: cmake --build / --config ${{env.BUILD_TYPE}}
-
-    - name: Test
-      working-directory: ${{github.workspace}}/crashfix_service
-      run: ctest -C ${{env.BUILD_TYPE}}
-      
+    - uses: actions/checkout@v2
+    # install dependencies
+    # name: boost
+    #  run: sudo apt-get update && sudo apt-get install -yq libboost1.65-dev
+    # build project
+    - name: mkdir
+      run: mkdir build
+    - name: cmake build ./crashfix_service/
+      run: cmake -Bbuild -H.
+    - name: cmake make
+      run: cmake --build build/ --target all
+    # run tests
+    # name: run test 1
+    #  run: build/tst/Example1_tst
+    # name: run test 2
+    #  run: build/tst/Example2_tst
