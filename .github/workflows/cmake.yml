@@ -15,16 +15,12 @@ jobs:
     # build project
     - name: cd
       run: cd crashfix_service
-    - name: mkdir
-      run: mkdir build
-    - name: cd
-      run: cd build
-    - name: cmake generate
-      run: cmake -B .. --target .
-    - name: cmake make
-      run: cmake --build .
-    # run tests
-    # name: run test 1
+    - name: generate cmake makefiles
+      run: cmake -G "Unix Makefiles" .
+    - name: make
+      run: make
+    # run tests    
+    # - name: run test 1
     #  run: build/tst/Example1_tst
-    # name: run test 2
+    # - name: run test 2
     #  run: build/tst/Example2_tst
