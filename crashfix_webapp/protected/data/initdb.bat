@@ -1,1 +1,0 @@
-..\yiic migrate up
