@@ -36,8 +36,8 @@
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 #include <windows.h>
 #include <atlbase.h>
-#include <atlapp.h>
-extern CAppModule _Module;
+//#include <atlapp.h>
+//extern CAppModule _Module;
 #define _WTL_NO_CSTRING
 #include <atlstr.h>
 #include <objbase.h>
