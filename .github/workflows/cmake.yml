@@ -18,9 +18,7 @@ jobs:
     - name: mkdir
       run: mkdir build
     - name: cd
-      run: cd build
-    - name: cmake build ..
-      run: cmake -B build -H.
+      run: cd build ..
     - name: cmake make
       run: cmake --build build/ --target all
     # run tests
