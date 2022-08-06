@@ -17,6 +17,8 @@ jobs:
       run: cd crashfix_service
     - name: mkdir
       run: mkdir build
+    - name: cd
+      run: cd build
     - name: cmake build ..
       run: cmake -B build -H.
     - name: cmake make
