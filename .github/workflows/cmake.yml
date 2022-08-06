@@ -14,9 +14,9 @@ jobs:
     #  run: sudo apt-get update && sudo apt-get install -yq libboost1.65-dev
     # build project
     - name: cd
-      run: cd crashfix_service
+      run: cd crashfix_service      
     - name: generate cmake makefiles
-      run: cmake -G "Unix Makefiles" 
+      run: cmake build .
     - name: make
       run: make
     # run tests    
