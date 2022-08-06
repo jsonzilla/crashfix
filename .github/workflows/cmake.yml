@@ -18,9 +18,11 @@ jobs:
     - name: mkdir
       run: mkdir build
     - name: cd
-      run: cd build ..
+      run: cd build
+    - name: cmake generate
+      run: cmake -B .. --target .
     - name: cmake make
-      run: cmake --build build/ --target all
+      run: cmake --build .
     # run tests
     # name: run test 1
     #  run: build/tst/Example1_tst
