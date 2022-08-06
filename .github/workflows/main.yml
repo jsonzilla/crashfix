@@ -10,6 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: cd
-      run: cd crashfix_service      
+      run: cd crashfix_service/dumper      
     - name: generate cmake makefiles
-      run: make dumper
+      run: make 
