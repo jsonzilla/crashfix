@@ -1,0 +1,84 @@
+warning: failed to open layout file 'doxygenlayout.xml' for reading!
+warning: source ..\processing\scripts is not a readable file or directory... skipping.
+warning: source ..\reporting\scripts is not a readable file or directory... skipping.
+warning: source ../include is not a readable file or directory... skipping.
+/home/json/workspace/crashfix_service/doxygen/dox/bugs.dox:38: warning: found subsection command outside of section context!
+/home/json/workspace/crashfix_service/doxygen/dox/bugs.dox:39: warning: explicit link request to 'NN' could not be resolved
+/home/json/workspace/crashfix_service/doxygen/dox/changelog.dox:46: warning: Found unknown command '\Program'
+/home/json/workspace/crashfix_service/doxygen/dox/changelog.dox:46: warning: Found unknown command '\CrashFix'
+/home/json/workspace/crashfix_service/doxygen/dox/changelog.dox:46: warning: Found unknown command '\crash_reports'
+/home/json/workspace/crashfix_service/doxygen/dox/client_integration.dox:3: warning: unable to resolve reference to 'architecture' for \ref command
+/home/json/workspace/crashfix_service/doxygen/dox/collections.dox:55: warning: explicit link request to 'NN' could not be resolved
+/home/json/workspace/crashfix_service/doxygen/dox/crash_reports.dox:38: warning: explicit link request to 'NN' could not be resolved
+/home/json/workspace/crashfix_service/doxygen/dox/crash_reports.dox:47: warning: Found unknown command '\subection'
+/home/json/workspace/crashfix_service/doxygen/dox/debug_info.dox:20: warning: unable to resolve reference to 'uploader_tool' for \ref command
+/home/json/workspace/crashfix_service/doxygen/dox/debug_info.dox:23: warning: found subsection command outside of section context!
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:65: warning: unable to resolve reference to 'tutorials' for \ref command
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:90: warning: Found unknown command '\Program'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:90: warning: Found unknown command '\CrashFix'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:90: warning: Found unknown command '\conf'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:101: warning: Found unknown command '\Program'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:101: warning: Found unknown command '\CrashFix'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:101: warning: Found unknown command '\logs'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:122: warning: Found unknown command '\Program'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:122: warning: Found unknown command '\Apache'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:122: warning: Found unknown command '\htdocs'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:122: warning: Found unknown command '\crashfix'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:128: warning: Found unknown command '\wamp'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:128: warning: Found unknown command '\crashfix'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\wamp'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\bin'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\apache'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\apache2'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\bin'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\php'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:147: warning: Found unknown command '\wamp'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:147: warning: Found unknown command '\bin'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:147: warning: Found unknown command '\php'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:147: warning: Found unknown command '\php5'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:147: warning: Found unknown command '\php'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:169: warning: found </b> tag without matching <b>
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:191: warning: found </b> tag without matching <b>
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:192: warning: found </b> tag without matching <b>
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:221: warning: Unsupported xml/html tag <your_dir_name> found
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:226: warning: Unsupported xml/html tag <port> found
+/home/json/workspace/crashfix_service/doxygen/dox/first_login.dox:20: warning: Found unknown command '\localhost'
+/home/json/workspace/crashfix_service/doxygen/dox/install_windows.dox:76: warning: Unsupported xml/html tag <your_password> found
+/home/json/workspace/crashfix_service/doxygen/dox/install_windows.dox:80: warning: Unsupported xml/html tag <your_password> found
+/home/json/workspace/crashfix_service/doxygen/dox/install_windows.dox:76: warning: Unsupported xml/html tag <your_password> found
+/home/json/workspace/crashfix_service/doxygen/dox/install_windows.dox:80: warning: Unsupported xml/html tag <your_password> found
+/home/json/workspace/crashfix_service/doxygen/dox/upgrade_windows.dox:33: warning: found </div> tag without matching <div>
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:65: warning: unable to resolve reference to 'tutorials' for \ref command
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:90: warning: Found unknown command '\Program'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:90: warning: Found unknown command '\CrashFix'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:90: warning: Found unknown command '\conf'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:101: warning: Found unknown command '\Program'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:101: warning: Found unknown command '\CrashFix'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:101: warning: Found unknown command '\logs'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:122: warning: Found unknown command '\Program'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:122: warning: Found unknown command '\Apache'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:122: warning: Found unknown command '\htdocs'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:122: warning: Found unknown command '\crashfix'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:128: warning: Found unknown command '\wamp'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:128: warning: Found unknown command '\crashfix'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\wamp'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\bin'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\apache'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\apache2'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\bin'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:146: warning: Found unknown command '\php'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:147: warning: Found unknown command '\wamp'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:147: warning: Found unknown command '\bin'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:147: warning: Found unknown command '\php'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:147: warning: Found unknown command '\php5'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:147: warning: Found unknown command '\php'
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:169: warning: found </b> tag without matching <b>
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:191: warning: found </b> tag without matching <b>
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:192: warning: found </b> tag without matching <b>
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:221: warning: Unsupported xml/html tag <your_dir_name> found
+/home/json/workspace/crashfix_service/doxygen/dox/faq.dox:226: warning: Unsupported xml/html tag <port> found
+/home/json/workspace/crashfix_service/doxygen/dox/changelog.dox:46: warning: Found unknown command '\Program'
+/home/json/workspace/crashfix_service/doxygen/dox/changelog.dox:46: warning: Found unknown command '\CrashFix'
+/home/json/workspace/crashfix_service/doxygen/dox/changelog.dox:46: warning: Found unknown command '\crash_reports'
+/home/json/workspace/crashfix_service/doxygen/dox/upgrade_windows.dox:33: warning: found </div> tag without matching <div>
+/home/json/workspace/crashfix_service/doxygen/dox/uploader_tool.dox:18: warning: found subsection command outside of section context!
