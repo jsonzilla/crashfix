@@ -27,8 +27,6 @@ Prerequisites:
 sudo apt-get install mc codeblocks mercurial cmake build-essential libssl-dev rpm
 make dumper
 cd dumper
-hg pull http://192.168.181.1:8000
-hg up
 cmake clear .
 cmake -G "CodeBlocks - Unix Makefiles" .
 cmake -DCMAKE_BUILD_TYPE=Debug ./Debug
